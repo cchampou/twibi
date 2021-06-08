@@ -1,0 +1,52 @@
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+
+const commonConfig = {
+  mode: 'development',
+  devtool: 'inline-cheap-module-source-map',
+  output: {
+    filename: '[name].js',
+    path: path.join(__dirname, '../dist'),
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
+  stats: {
+    modules: false,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {
+              useBuiltIns: 'usage',
+              corejs: { version: '3.13', proposals: true },
+            }], '@babel/preset-react', '@babel/preset-typescript'],
+          },
+        },
+      },
+    ],
+  },
+};
+
+const clientConfig = {
+  entry: {
+    client: './src/front/index.tsx',
+  },
+  ...commonConfig,
+};
+
+const serverConfig = {
+  target: 'node',
+  externals: [nodeExternals()],
+  entry: {
+    server: './src/back/index.ts',
+  },
+  ...commonConfig,
+};
+
+module.exports = [clientConfig, serverConfig];
