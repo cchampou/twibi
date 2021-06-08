@@ -1,8 +1,6 @@
-import { Stream } from '../../common/types';
-
 import Discord from '../discord/core';
-import { streamToDiscordEmbed } from '../utils/converter';
 import { logInfo } from '../utils/logger';
+import Database from '../core/database';
 
 const express = require('express');
 
@@ -16,13 +14,27 @@ router.get('/event/callback', (req, res) => {
   res.send(hubChallenge);
 });
 
-router.post('/event/callback', (request, response) => {
-  console.log(request.body);
-  // if (request.body.data[0]) {
-  // const stream: Stream = request.body.data[0];
-  // Discord.sendEmbedMessage(streamToDiscordEmbed(stream));
-  // }
-  response.send();
+router.post('/event/callback', (req, res) => {
+  res.send();
+});
+
+router.post('/commands', (req, res) => {
+  const validation = validateFields(req.body, ['command', 'response']);
+  if (validation.length > 0) {
+    return res.status(400).send(`Missing field ${validation.join(', ')}`);
+  }
+  Database.db.get('commands').push([req.body.command, req.body.response]).save();
+  return res.send();
+});
+
+router.get('/commands', (req, res) => {
+  const commands = Database.db.get('commands').value();
+  return res.send(commands);
+});
+
+router.delete('/commands', (req, res) => {
+  Database.db.set('commands', []).save();
+  return res.send();
 });
 
 router.post('/event', (req, res) => {

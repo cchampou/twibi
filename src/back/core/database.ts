@@ -4,12 +4,13 @@ import StormDB from 'stormdb';
 class Database {
   private readonly engine;
 
-  private db;
+  db;
 
   constructor() {
     // eslint-disable-next-line new-cap
     this.engine = new StormDB.localFileEngine('./db.stormdb');
     this.db = new StormDB(this.engine);
+    this.db.default({ commands: [] });
   }
 }
 

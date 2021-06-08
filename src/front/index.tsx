@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { io } from 'socket.io-client';
 import Discord from './discord';
+import Chatbot from './chatbot';
 
 const socket = io('/');
 
@@ -22,6 +23,7 @@ const App = () => (
   <>
     <h1>Twibi Dashboard</h1>
     <Discord />
+    <Chatbot />
   </>
 );
 

@@ -1,6 +1,8 @@
 import { Client } from 'tmi.js';
+import { useDebugValue } from 'react';
 import { logError, logInfo } from '../utils/logger';
 import { splitWords, trimStart } from '../utils/string';
+import Database from '../core/database';
 
 class TwitchMessaging {
   client;
@@ -23,20 +25,35 @@ class TwitchMessaging {
     if (words[0][0] === '!') {
       this.commands(channel, tags, words);
     }
-    if (message.toLowerCase() === '!hello') {
-      this.client.say(channel, `Check out ${tags.username} at https://www.twitch.tv/${tags.username}`);
-    }
   };
 
   commands(channel, tags, words) {
-    const command = trimStart(words[0], '!');
-    if (command === 'so') {
-      this.shoutOut(channel, trimStart(words[1], '@'));
+    const { response, data } = this.findCommand(words);
+    console.log(data);
+    if (response) {
+      data.push(['{me}', tags.username]);
+      this.client.say(channel, this.populate(response, data));
     }
   }
 
-  shoutOut(channel, username) {
-    this.client.say(channel, `Check out ${username} at https://www.twitch.tv/${username}`);
+  populate(response, data) {
+    if (data.length === 0) {
+      return response;
+    }
+    return data.reduce((acc, val) => acc.replace(new RegExp(val[0], 'g'), trimStart(val[1], '@').toLowerCase()), response);
+  }
+
+  findCommand(words): { data:Array<[string, string]>, response: string } {
+    const needle = trimStart(words[0], '!');
+    const commands = Database.db.get('commands').value();
+    const matchingPattern = commands.find(([command]) => command.startsWith(needle));
+    if (!matchingPattern) return null;
+    const wordedPattern = splitWords(matchingPattern[0]);
+    return {
+      data: wordedPattern
+        .map((val: string, index: number): [string, string] => [val, words[index] || '']).slice(1),
+      response: matchingPattern[1],
+    };
   }
 }
 
