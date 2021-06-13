@@ -1,6 +1,5 @@
-import fetch from 'node-fetch';
 import { Channel } from 'discord.js';
-import { getJsonRequest, postRequest } from '../utils/http';
+import { getJsonRequest, postRequest } from '../../utils/http';
 
 const submitChannel: (channel: string) => void = (channel) => {
   postRequest('/twitch/event', {

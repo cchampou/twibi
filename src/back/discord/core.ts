@@ -23,10 +23,15 @@ class DiscordClass {
     return this.client.channels.cache.array();
   }
 
-  sendEmbedMessage(embedData: MessageEmbedOptions) {
+  sendTextMessage(message: string) {
+    const channel = <TextChannel> this.client.channels.cache.get(this.channel);
+    channel.send(message).then(() => null);
+  }
+
+  sendEmbedMessage(message: string, embedData: MessageEmbedOptions) {
     const embed = new MessageEmbed(embedData);
     const channel = <TextChannel> this.client.channels.cache.get(this.channel);
-    channel.send(embed).then(() => null);
+    channel.send(message, { embed }).then(() => null);
   }
 
   onConnected = () => {

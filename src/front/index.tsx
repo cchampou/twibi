@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { io } from 'socket.io-client';
-import Discord from './discord';
-import Chatbot from './chatbot';
+import { Global, css } from '@emotion/react';
+import Router from './router';
+import theme from './theme';
+
+const globalStyles = css`
+  body {
+    background-color: ${theme.colors.primary};
+    margin: 0;
+    color: ${theme.colors.white};
+  }
+`;
 
 const socket = io('/');
 
@@ -21,9 +30,8 @@ console.log('Script loaded');
 
 const App = () => (
   <>
-    <h1>Twibi Dashboard</h1>
-    <Discord />
-    <Chatbot />
+    <Global styles={globalStyles} />
+    <Router />
   </>
 );
 

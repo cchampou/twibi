@@ -1,12 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import useDiscord from './discord/hooks';
+import useDiscord from './hooks';
+import Heading from '../../components/Heading';
+import Button from '../../components/Button';
 
 const Discord: FunctionComponent<void> = () => {
   const { subscribe, channels, onChange } = useDiscord();
 
   return (
     <section>
-      <h2>Discord Live Notifications</h2>
+      <Heading level={2}>Discord Live Notifications</Heading>
       <label htmlFor="discord-channel">
         Select Channel
         <select id="discord-channel" onChange={onChange}>
@@ -20,7 +22,7 @@ const Discord: FunctionComponent<void> = () => {
           )}
         </select>
       </label>
-      <button type="button" onClick={subscribe}>Enable</button>
+      <Button type="button" onClick={subscribe}>Enable</Button>
     </section>
   );
 };
