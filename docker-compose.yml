@@ -1,0 +1,12 @@
+services:
+  database:
+    container_name: database
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+  webserver:
+    container_name: webserver
+    build: .
+    ports:
+    - 8000:8000

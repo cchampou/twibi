@@ -8,7 +8,7 @@ import Network from './network';
 
 import discordRouter from './discord/router';
 import twitchRouter from './twitch/router';
-import { logInfo } from './utils/logger';
+import { logSuccess } from './utils/logger';
 
 Network.App.use(express.json());
 const root = 'dist';
@@ -24,5 +24,5 @@ Network.App.get('/status', (req, response) => {
 Network.App.use(fallback('index.html', { root }));
 
 Network.HttpServer.listen(process.env.SERVER_PORT, () => {
-  logInfo(`Application is started on port ${process.env.SERVER_PORT}`);
+  logSuccess(`Application is started on port ${process.env.SERVER_PORT}`);
 });

@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import { createServer } from 'http';
+import { logInfo } from './utils/logger';
 
 const socketIo = require('socket.io');
 const express = require('express');
@@ -16,8 +17,7 @@ class Network {
     this.HttpServer = createServer(this.App);
     this.IO = socketIo(this.HttpServer, {});
     this.IO.on('connection', (socket) => {
-      // eslint-disable-next-line no-console
-      console.log(socket.id);
+      logInfo(`New client connected with id ${socket.id}`);
     });
   }
 }

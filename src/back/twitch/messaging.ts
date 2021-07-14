@@ -1,7 +1,7 @@
 import { Client } from 'tmi.js';
 import { logError, logInfo } from '../utils/logger';
 import { splitWords, trimStart } from '../utils/string';
-import Database from '../core/database';
+import Command from './models/Command';
 
 class TwitchMessaging {
   client;
@@ -33,8 +33,8 @@ class TwitchMessaging {
     }
   };
 
-  commands(channel, tags, words) {
-    const found = this.findCommand(words);
+  async commands(channel, tags, words) {
+    const found = await this.findCommand(words);
     if (found) {
       const { response, data } = found;
       data.push(['{me}', tags.username]);
@@ -49,15 +49,15 @@ class TwitchMessaging {
     return data.reduce((acc, val) => acc.replace(new RegExp(val[0], 'g'), trimStart(val[1], '@').toLowerCase()), response);
   }
 
-  findCommand(words): { data:Array<[string, string]>, response: string } {
+  async findCommand(words): Promise<{ data: Array<[ string, string ]>, response: string }> {
     const needle = trimStart(words[0], '!');
-    const commands = Database.db.get('commands').value();
+    const commands = await Command.find({});
     const matchingPattern = commands.find(([command]) => command.startsWith(needle));
     if (!matchingPattern) return null;
     const wordedPattern = splitWords(matchingPattern[0]);
     return {
       data: wordedPattern
-        .map((val: string, index: number): [string, string] => [val, words[index] || '']).slice(1),
+        .map((val: string, index: number): [ string, string ] => [val, words[index] || '']).slice(1),
       response: matchingPattern[1],
     };
   }
