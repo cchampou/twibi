@@ -1,7 +1,9 @@
 import {
-  createSubscription, listSubscriptions, revokeSubscription, callback,
+  createSubscription, listSubscriptions, revokeSubscription, callback, getChannelInfo,
 } from './controllers/events';
-import { clearCommands, createCommand, listCommands } from './controllers/commands';
+import {
+  clearCommands, createCommand, listCommands,
+} from './controllers/commands';
 
 const express = require('express');
 
@@ -12,6 +14,8 @@ router.get('/event', listSubscriptions);
 router.post('/event', createSubscription);
 router.delete('/event', revokeSubscription);
 router.post('/event/callback', callback);
+
+router.get('/channel', getChannelInfo);
 
 // Commands
 router.post('/commands', createCommand);
