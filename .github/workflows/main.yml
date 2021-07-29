@@ -13,6 +13,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache modules
+        id: cache-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-primes
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
