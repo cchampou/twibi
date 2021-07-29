@@ -42,14 +42,14 @@ class TwitchMessaging {
     }
   }
 
-  populate(response, data) {
+  populate = (response, data) => {
     if (data.length === 0) {
       return response;
     }
     return data.reduce((acc, val) => acc.replace(new RegExp(val[0], 'g'), trimStart(val[1], '@').toLowerCase()), response);
-  }
+  };
 
-  async findCommand(words): Promise<{ data: Array<[ string, string ]>, response: string }> {
+  findCommand: Promise<{ data: Array<[ string, string ]>, response: string }> = async (words) => {
     const needle = trimStart(words[0], '!');
     const commands = await Command.find({});
     const matchingPattern = commands.find(([command]) => command.startsWith(needle));
@@ -60,7 +60,7 @@ class TwitchMessaging {
         .map((val: string, index: number): [ string, string ] => [val, words[index] || '']).slice(1),
       response: matchingPattern[1],
     };
-  }
+  };
 }
 
 export default new TwitchMessaging();

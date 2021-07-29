@@ -13,7 +13,7 @@ class Database {
   }
 
   connect() {
-    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'admin' }).then((_) => null).catch(logError);
+    mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'admin' }).then(() => null).catch(logError);
     this.db = mongoose.connection;
     this.db.on('error', () => logError('Fail to connect to db'));
     this.db.once('open', () => {

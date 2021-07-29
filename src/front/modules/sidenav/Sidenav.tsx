@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
+import { useLogout } from '../login/useLogin';
 
 const SidenavWrapper = styled('div')`
    display: flex;
@@ -24,19 +25,26 @@ const SidenavItem = styled(Link)`
   font-weight: lighter;
 `;
 
-const Sidenav = ({ baseUrl }: { baseUrl: string }) => (
-  <SidenavWrapper>
-    <Logo />
-    <SidenavItem to={`${baseUrl}/notifications`}>
-      Social Notifications
-    </SidenavItem>
-    <SidenavItem to={`${baseUrl}/bots`}>
-      Chatbots 💬
-    </SidenavItem>
-    <SidenavItem to={`${baseUrl}/settings`}>
-      Settings ⚙️
-    </SidenavItem>
-  </SidenavWrapper>
-);
+const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
+  const logout = useLogout();
+
+  return (
+    <SidenavWrapper>
+      <Logo />
+      <SidenavItem to={`${baseUrl}/notifications`}>
+        Social Notifications
+      </SidenavItem>
+      <SidenavItem to={`${baseUrl}/bots`}>
+        Chatbots 💬
+      </SidenavItem>
+      <SidenavItem to={`${baseUrl}/settings`}>
+        Settings ⚙️
+      </SidenavItem>
+      <SidenavItem to="/" onClick={logout}>
+        Logout ❌
+      </SidenavItem>
+    </SidenavWrapper>
+  );
+};
 
 export default Sidenav;

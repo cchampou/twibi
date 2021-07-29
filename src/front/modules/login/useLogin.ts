@@ -1,5 +1,6 @@
-import { useLocation, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+/* eslint-disable no-console */
+import { useHistory, useLocation } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
 import { extractUrlParams, trimHash } from './login.utils';
 import { TWITCH_ACCESS_TOKEN } from '../storage/storage.constants';
 
@@ -11,6 +12,15 @@ const autoLogin = (history) => {
     console.info('twitch token stored, going to dashboard');
     goToDashboard(history);
   }
+};
+
+export const useLogout = () => {
+  const history = useHistory();
+
+  return useCallback(() => {
+    localStorage.removeItem(TWITCH_ACCESS_TOKEN);
+    history.replace('/');
+  }, [history]);
 };
 
 const useLogin = () => {

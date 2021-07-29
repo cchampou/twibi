@@ -13,9 +13,11 @@ const useAuth = () => {
 };
 
 const withAuthHoc = (Component) => (props) => {
+  // eslint-disable-next-line no-console
   console.info('checking authentication');
   useAuth();
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Component {...props} />;
 };
 
