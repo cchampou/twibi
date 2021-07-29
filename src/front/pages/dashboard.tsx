@@ -1,11 +1,14 @@
 import React from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import {
+  Switch, Route, useRouteMatch,
+} from 'react-router-dom';
 import styled from '@emotion/styled';
 import Notifications from './notifications';
 import Commands from './commands';
 import Sidenav from '../modules/sidenav/Sidenav';
 import theme from '../theme';
 import Settings from './settings';
+import withAuthHoc from '../modules/login/withAuth.hoc';
 
 const Wrapper = styled('section')`
   display: flex;
@@ -39,4 +42,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withAuthHoc(Dashboard);

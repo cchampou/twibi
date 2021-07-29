@@ -5,6 +5,7 @@ import Logo from '../components/Logo';
 import Button from '../components/Button';
 import Heading from '../components/Heading';
 import { generateTwitchOAuthLink } from '../utils/twitch';
+import useLogin from '../modules/login/useLogin';
 
 const HomeWrapper = styled('div')`
    display: flex;
@@ -16,6 +17,7 @@ const HomeWrapper = styled('div')`
 `;
 
 const Home = () => {
+  useLogin();
   const loginUrl = useMemo(() => generateTwitchOAuthLink(process.env.TWITCH_CLIENT_ID), []);
 
   return (
