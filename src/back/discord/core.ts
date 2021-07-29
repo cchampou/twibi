@@ -10,7 +10,7 @@ class DiscordClass {
 
   constructor() {
     this.client = new Client();
-    this.channel = '849682988542853192';
+    this.channel = '849328296113471540';
     this.connectClient();
   }
 

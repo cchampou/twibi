@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import useDiscord from './hooks';
 import Heading from '../../components/Heading';
 import Button from '../../components/Button';
 
-const Discord: FunctionComponent<void> = () => {
+const Discord = () => {
   const { subscribe, channels, onChange } = useDiscord();
 
   return (

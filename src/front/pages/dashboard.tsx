@@ -5,6 +5,7 @@ import Notifications from './notifications';
 import Commands from './commands';
 import Sidenav from '../modules/sidenav/Sidenav';
 import theme from '../theme';
+import Settings from './settings';
 
 const Wrapper = styled('section')`
   display: flex;
@@ -28,6 +29,9 @@ const Dashboard = () => {
           </Route>
           <Route path={`${path}/bots`}>
             <Commands />
+          </Route>
+          <Route path={`${path}/settings`}>
+            <Settings />
           </Route>
         </Switch>
       </MainSection>

@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const Dotenv = require('dotenv-webpack');
 
 const commonConfig = {
   mode: 'development',
@@ -14,6 +15,9 @@ const commonConfig = {
   stats: {
     modules: false,
   },
+  plugins: [
+    new Dotenv(),
+  ],
   module: {
     rules: [
       {

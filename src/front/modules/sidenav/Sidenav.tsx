@@ -27,17 +27,14 @@ const SidenavItem = styled(Link)`
 const Sidenav = ({ baseUrl }: { baseUrl: string }) => (
   <SidenavWrapper>
     <Logo />
-    <SidenavItem to={`${baseUrl}/stats`}>
-      Stats 🏗
-    </SidenavItem>
     <SidenavItem to={`${baseUrl}/notifications`}>
       Social Notifications
     </SidenavItem>
     <SidenavItem to={`${baseUrl}/bots`}>
-      Chatbots  🏗
+      Chatbots 💬
     </SidenavItem>
-    <SidenavItem to={`${baseUrl}/overlays`}>
-      Streaming overlays  🏗
+    <SidenavItem to={`${baseUrl}/settings`}>
+      Settings ⚙️
     </SidenavItem>
   </SidenavWrapper>
 );
