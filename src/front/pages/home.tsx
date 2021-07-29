@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 import Logo from '../components/Logo';
 import Button from '../components/Button';
 import Heading from '../components/Heading';

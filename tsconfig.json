@@ -6,5 +6,5 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": ["src", "./types/custom.d.ts"]
 }
