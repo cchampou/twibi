@@ -9,27 +9,36 @@ export default () => {
   const [newResponse, setNewResponse] = useState('world');
   const [commands, setCommands] = useState([]);
 
-  const onCommandChange = useCallback((e) => {
-    setNewCommand(e.target.value);
-  }, [setNewCommand]);
+  const onCommandChange = useCallback(
+    (e) => {
+      setNewCommand(e.target.value);
+    },
+    [setNewCommand]
+  );
 
-  const onResponseChange = useCallback((e) => {
-    setNewResponse(e.target.value);
-  }, [setNewResponse]);
+  const onResponseChange = useCallback(
+    (e) => {
+      setNewResponse(e.target.value);
+    },
+    [setNewResponse]
+  );
 
   const fetchCommands = () => {
     getJsonRequest('/twitch/commands').then((data) => setCommands(data));
   };
 
-  const onSubmit = useCallback((e) => {
-    e.preventDefault();
-    postRequest('/twitch/commands', {
-      command: newCommand,
-      response: newResponse,
-    }).then(() => {
-      fetchCommands();
-    });
-  }, [newCommand, newResponse]);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      postRequest('/twitch/commands', {
+        command: newCommand,
+        response: newResponse,
+      }).then(() => {
+        fetchCommands();
+      });
+    },
+    [newCommand, newResponse]
+  );
 
   const onDelete = useCallback(() => {
     deleteRequest('/twitch/commands').then(() => null);
@@ -52,7 +61,9 @@ export default () => {
           </li>
         ))}
       </ul>
-      <Button type="button" onClick={onDelete}>Vider</Button>
+      <Button type="button" onClick={onDelete}>
+        Vider
+      </Button>
       <form onSubmit={onSubmit}>
         <Input type="text" value={newCommand} onChange={onCommandChange} />
         <Input type="text" value={newResponse} onChange={onResponseChange} />

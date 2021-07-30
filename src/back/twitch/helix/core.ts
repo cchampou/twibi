@@ -9,7 +9,8 @@ class HelixApi {
   getChannelInfo(id: number): Promise<Channel> {
     return fetch(`${this.baseRoute}/channels?broadcaster_id=${id}`, {
       headers: Auth.generateHeaders(),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then(({ data }) => data[0])
       .catch((err) => logError(err));
   }
@@ -17,7 +18,8 @@ class HelixApi {
   getUser(username: string): Promise<User> {
     return fetch(`${this.baseRoute}/users?login=${username}`, {
       headers: Auth.generateHeaders(),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then(({ data }) => data[0])
       .catch((err) => logError(err));
   }

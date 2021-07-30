@@ -22,7 +22,9 @@ class TwitchMessaging {
   onHosted = (channel, username) => {
     // eslint-disable-next-line no-console
     console.log(channel, username);
-    this.client.say('#carorockwell', `@${username} thank you for the host !`).catch(logInfo);
+    this.client
+      .say('#carorockwell', `@${username} thank you for the host !`)
+      .catch(logInfo);
   };
 
   onMessage = (channel, tags, message, self) => {
@@ -46,21 +48,35 @@ class TwitchMessaging {
     if (data.length === 0) {
       return response;
     }
-    return data.reduce((acc, val) => acc.replace(new RegExp(val[0], 'g'), trimStart(val[1], '@').toLowerCase()), response);
+    return data.reduce(
+      (acc, val) =>
+        acc.replace(
+          new RegExp(val[0], 'g'),
+          trimStart(val[1], '@').toLowerCase()
+        ),
+      response
+    );
   };
 
-  findCommand: Promise<{ data: Array<[ string, string ]>, response: string }> = async (words) => {
-    const needle = trimStart(words[0], '!');
-    const commands = await Command.find({});
-    const matchingPattern = commands.find(([command]) => command.startsWith(needle));
-    if (!matchingPattern) return null;
-    const wordedPattern = splitWords(matchingPattern[0]);
-    return {
-      data: wordedPattern
-        .map((val: string, index: number): [ string, string ] => [val, words[index] || '']).slice(1),
-      response: matchingPattern[1],
+  findCommand: Promise<{ data: Array<[string, string]>; response: string }> =
+    async (words) => {
+      const needle = trimStart(words[0], '!');
+      const commands = await Command.find({});
+      const matchingPattern = commands.find(([command]) =>
+        command.startsWith(needle)
+      );
+      if (!matchingPattern) return null;
+      const wordedPattern = splitWords(matchingPattern[0]);
+      return {
+        data: wordedPattern
+          .map((val: string, index: number): [string, string] => [
+            val,
+            words[index] || '',
+          ])
+          .slice(1),
+        response: matchingPattern[1],
+      };
     };
-  };
 }
 
 export default new TwitchMessaging();

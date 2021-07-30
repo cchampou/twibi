@@ -13,16 +13,16 @@ const Discord = () => {
         Select Channel
         <select id="discord-channel" onChange={onChange}>
           <option>Pick a channel</option>
-          {channels.map(
-            ({ id, name }) => (
-              <option key={id} value={id}>
-                {name}
-              </option>
-            ),
-          )}
+          {channels.map(({ id, name }) => (
+            <option key={id} value={id}>
+              {name}
+            </option>
+          ))}
         </select>
       </label>
-      <Button type="button" onClick={subscribe}>Enable</Button>
+      <Button type="button" onClick={subscribe}>
+        Enable
+      </Button>
     </section>
   );
 };

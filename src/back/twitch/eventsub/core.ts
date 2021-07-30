@@ -9,7 +9,8 @@ class EventSub {
   listSubscriptions() {
     return fetch(this.eventSubUrl, {
       headers: Auth.generateHeaders(),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then(this.onSuccess)
       .catch(this.onError);
   }
@@ -33,7 +34,8 @@ class EventSub {
           secret: process.env.SECRET,
         },
       }),
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then(this.onSuccess)
       .catch(this.onError);
   }

@@ -19,7 +19,7 @@ const getFontWeightByLevel = ({ level }) => {
 };
 
 type HeadingProps = {
-  level: number
+  level: number;
 };
 
 const Heading = styled('h1')<HeadingProps>`

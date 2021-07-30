@@ -15,9 +15,7 @@ const commonConfig = {
   stats: {
     modules: false,
   },
-  plugins: [
-    new Dotenv(),
-  ],
+  plugins: [new Dotenv()],
   module: {
     rules: [
       {
@@ -26,10 +24,17 @@ const commonConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', {
-              useBuiltIns: 'usage',
-              corejs: { version: '3.13', proposals: true },
-            }], '@babel/preset-react', '@babel/preset-typescript'],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: { version: '3.13', proposals: true },
+                },
+              ],
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
           },
         },
       },

@@ -12,9 +12,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
     ports:
-    - 27017:27017
+      - 27017:27017
   webserver:
     container_name: webserver
     build: .
     ports:
-    - 8000:8000
+      - 8000:8000
