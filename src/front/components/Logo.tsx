@@ -13,7 +13,10 @@ const StyledLogo = styled('img')`
 
 const Logo = () => {
   const history = useHistory();
-  const isAuth = useMemo(() => Boolean(localStorage.getItem(TWITCH_ACCESS_TOKEN)), []);
+  const isAuth = useMemo(
+    () => Boolean(localStorage.getItem(TWITCH_ACCESS_TOKEN)),
+    []
+  );
 
   const onClickHandler = useCallback(() => {
     history.push(isAuth ? '/dashboard' : '/');

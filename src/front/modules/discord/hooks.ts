@@ -13,8 +13,7 @@ const useDiscord = () => {
   const onChange = useCallback((e) => setChannel(e.target.value), [channel]);
 
   useEffect(() => {
-    fetchChannels()
-      .then((response) => setChannels(response));
+    fetchChannels().then((response) => setChannels(response));
   }, []);
 
   return {

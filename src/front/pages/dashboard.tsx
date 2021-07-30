@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Switch, Route, useRouteMatch,
-} from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Notifications from './notifications';
 import Commands from './commands';

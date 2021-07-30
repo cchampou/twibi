@@ -7,10 +7,6 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
-  extends: [
-    'airbnb-typescript',
-  ],
+  plugins: ['@typescript-eslint'],
+  extends: ['airbnb-typescript', 'prettier'],
 };

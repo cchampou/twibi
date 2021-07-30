@@ -1,5 +1,9 @@
 import {
-  MessageEmbed, MessageEmbedOptions, Client, Channel, TextChannel,
+  MessageEmbed,
+  MessageEmbedOptions,
+  Client,
+  Channel,
+  TextChannel,
 } from 'discord.js';
 import { logError, logSuccess } from '../utils/logger';
 
@@ -16,7 +20,10 @@ class DiscordClass {
 
   connectClient() {
     this.client.on('ready', this.onConnected);
-    this.client.login(process.env.DISCORD_TOKEN).then(() => null).catch(this.onError);
+    this.client
+      .login(process.env.DISCORD_TOKEN)
+      .then(() => null)
+      .catch(this.onError);
   }
 
   listChannels(): Channel[] {
@@ -24,13 +31,13 @@ class DiscordClass {
   }
 
   sendTextMessage(message: string) {
-    const channel = <TextChannel> this.client.channels.cache.get(this.channel);
+    const channel = <TextChannel>this.client.channels.cache.get(this.channel);
     channel.send(message).then(() => null);
   }
 
   sendEmbedMessage(message: string, embedData: MessageEmbedOptions) {
     const embed = new MessageEmbed(embedData);
-    const channel = <TextChannel> this.client.channels.cache.get(this.channel);
+    const channel = <TextChannel>this.client.channels.cache.get(this.channel);
     channel.send(message, { embed }).then(() => null);
   }
 

@@ -1,8 +1,14 @@
 import {
-  createSubscription, listSubscriptions, revokeSubscription, callback, getChannelInfo,
+  createSubscription,
+  listSubscriptions,
+  revokeSubscription,
+  callback,
+  getChannelInfo,
 } from './controllers/events';
 import {
-  clearCommands, createCommand, listCommands,
+  clearCommands,
+  createCommand,
+  listCommands,
 } from './controllers/commands';
 
 const express = require('express');
