@@ -9,4 +9,12 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   extends: ['airbnb-typescript', 'prettier'],
+  overrides: [
+    {
+      files: ['**/*.tsx'],
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+  ],
 };

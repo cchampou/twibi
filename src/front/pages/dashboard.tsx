@@ -7,7 +7,7 @@ import Sidenav from '../modules/sidenav/Sidenav';
 import theme from '../theme';
 import Settings from './settings';
 import withAuthHoc from '../modules/login/withAuth.hoc';
-import Heading from '../components/Heading';
+import Profile from '../modules/profile/profile';
 
 const Wrapper = styled('section')`
   display: flex;
@@ -36,7 +36,7 @@ const Dashboard = () => {
             <Settings />
           </Route>
           <Route>
-            <Heading level={2}>Personal information</Heading>
+            <Profile />
           </Route>
         </Switch>
       </MainSection>
