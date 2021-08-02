@@ -2,6 +2,7 @@ import { Client } from 'tmi.js';
 import { logError, logInfo } from '../utils/logger';
 import { splitWords, trimStart } from '../utils/string';
 import Command from './models/Command';
+import { CommandType } from '../../common/types';
 
 class TwitchMessaging {
   client;
@@ -12,18 +13,21 @@ class TwitchMessaging {
         username: process.env.TWITCH_BOT_USERNAME,
         password: process.env.TWITCH_BOT_PASSWORD,
       },
-      channels: ['#carorockwell'],
+      channels: ['#k_talpa'],
     });
     this.client.connect().then(logInfo).catch(logError);
     this.client.on('message', this.onMessage);
     this.client.on('hosted', this.onHosted);
   }
 
-  onHosted = (channel, username) => {
+  onHosted = (channel, username, viewers) => {
     // eslint-disable-next-line no-console
     console.log(channel, username);
     this.client
-      .say('#carorockwell', `@${username} thank you for the host !`)
+      .say(
+        '#carorockwell',
+        `@${username} is hosting the stream with ${viewers} viewers`
+      )
       .catch(logInfo);
   };
 
@@ -58,25 +62,18 @@ class TwitchMessaging {
     );
   };
 
-  findCommand: Promise<{ data: Array<[string, string]>; response: string }> =
-    async (words) => {
-      const needle = trimStart(words[0], '!');
-      const commands = await Command.find({});
-      const matchingPattern = commands.find(([command]) =>
-        command.startsWith(needle)
-      );
-      if (!matchingPattern) return null;
-      const wordedPattern = splitWords(matchingPattern[0]);
-      return {
-        data: wordedPattern
-          .map((val: string, index: number): [string, string] => [
-            val,
-            words[index] || '',
-          ])
-          .slice(1),
-        response: matchingPattern[1],
-      };
+  findCommand = async (words) => {
+    const needle = trimStart(words[0], '!');
+    const commands: Array<CommandType> = await Command.find({});
+    const matchingPattern = commands.find(({ command }) =>
+      command.startsWith(needle)
+    );
+    if (!matchingPattern) return null;
+    return {
+      data: matchingPattern.command.split(' '),
+      response: matchingPattern.response,
     };
+  };
 }
 
 export default new TwitchMessaging();

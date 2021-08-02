@@ -1,10 +1,11 @@
-import * as mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
+import { CommandType } from '../../../common/types';
 
-const commandSchema = new mongoose.Schema({
+const commandSchema = new Schema({
   command: String,
   response: String,
 });
 
-const Command = mongoose.model('Command', commandSchema);
+const Command = model<CommandType>('Command', commandSchema);
 
 export default Command;

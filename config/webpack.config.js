@@ -16,6 +16,12 @@ const commonConfig = {
     modules: false,
   },
   plugins: [new Dotenv()],
+};
+
+const clientConfig = {
+  entry: {
+    client: './src/front/index.tsx',
+  },
   module: {
     rules: [
       {
@@ -48,12 +54,6 @@ const commonConfig = {
       },
     ],
   },
-};
-
-const clientConfig = {
-  entry: {
-    client: './src/front/index.tsx',
-  },
   ...commonConfig,
 };
 
@@ -62,6 +62,28 @@ const serverConfig = {
   externals: [nodeExternals()],
   entry: {
     server: './src/back/index.ts',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-typescript'],
+          },
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
   },
   ...commonConfig,
 };
