@@ -6,7 +6,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
   dev-database:
-    container_name: database
+    container_name: dev-database
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}

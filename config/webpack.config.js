@@ -1,6 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const commonConfig = {
   mode: 'development',
@@ -15,7 +16,12 @@ const commonConfig = {
   stats: {
     modules: false,
   },
-  plugins: [new Dotenv()],
+  plugins: [
+    new Dotenv(),
+    new CopyPlugin({
+      patterns: [{ from: 'public', to: path.join(__dirname, '../dist') }],
+    }),
+  ],
 };
 
 const clientConfig = {
