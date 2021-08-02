@@ -30,7 +30,7 @@ class EventSub {
         },
         transport: {
           method: 'webhook',
-          callback: `https://${process.env.DOMAIN}/twitch/event/callback`,
+          callback: `${process.env.PUBLIC_URL}/twitch/event/callback`,
           secret: process.env.SECRET,
         },
       }),

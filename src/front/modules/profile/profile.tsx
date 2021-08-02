@@ -9,6 +9,7 @@ const Profile = () => {
   if (!data) {
     return null;
   }
+  // eslint-disable-next-line no-console
   console.log(data);
 
   return (
