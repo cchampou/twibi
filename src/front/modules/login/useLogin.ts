@@ -1,15 +1,16 @@
 /* eslint-disable no-console */
 import { useHistory, useLocation } from 'react-router-dom';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { extractUrlParams, trimHash } from './login.utils';
-import { TWITCH_ACCESS_TOKEN } from '../storage/storage.constants';
+import { JWT } from '../storage/storage.constants';
+import { postRequest } from '../../utils/http';
 
 const goToDashboard = (history) => history.replace('/dashboard');
 
 const autoLogin = (history) => {
-  const token = localStorage.getItem(TWITCH_ACCESS_TOKEN);
+  const token = localStorage.getItem(JWT);
   if (token) {
-    console.info('twitch token stored, going to dashboard');
+    console.info('JWT token stored, going to dashboard');
     goToDashboard(history);
   }
 };
@@ -18,24 +19,46 @@ export const useLogout = () => {
   const history = useHistory();
 
   return useCallback(() => {
-    localStorage.removeItem(TWITCH_ACCESS_TOKEN);
+    localStorage.removeItem(JWT);
     history.replace('/');
   }, [history]);
 };
 
 const useLogin = () => {
+  const [error, setError] = useState(null);
   const { hash } = useLocation();
   const history = useHistory();
+
   useEffect(() => {
     autoLogin(history);
     const trimmed = trimHash(hash);
     const params = extractUrlParams(trimmed);
     if (params.get('access_token')) {
-      localStorage.setItem(TWITCH_ACCESS_TOKEN, params.get('access_token'));
-      console.info('twitch token stored, going to dashboard');
-      goToDashboard(history);
+      postRequest(
+        '/twitch/login',
+        {
+          token: params.get('access_token'),
+        },
+        {}
+      )
+        .then((res) => {
+          if (res.status !== 200) {
+            throw Error('nope');
+          }
+          return res.text();
+        })
+        .then((token) => {
+          localStorage.setItem(JWT, token);
+          goToDashboard(history);
+        })
+        .catch((e) => {
+          console.log(e);
+          setError("Vous n'êtes pas invité à l'Early Access");
+        });
     }
   }, []);
+
+  return error;
 };
 
 export default useLogin;

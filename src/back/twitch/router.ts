@@ -10,10 +10,13 @@ import {
   createCommand,
   listCommands,
 } from './controllers/commands';
+import { login } from './controllers/auth';
 
 const express = require('express');
 
 const router = express.Router();
+
+router.post('/login', login);
 
 // Events
 router.get('/event', listSubscriptions);

@@ -7,6 +7,9 @@ module.exports = {
       jsx: true,
     },
   },
+  rules: {
+    'import/prefer-default-export': 'off',
+  },
   plugins: ['@typescript-eslint'],
   extends: ['airbnb-typescript', 'prettier'],
   overrides: [

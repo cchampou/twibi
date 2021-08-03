@@ -1,12 +1,13 @@
 import fetch from 'node-fetch';
-import { logError, logSuccess } from '../utils/logger';
+import { logError, logSuccess } from '../../utils/logger';
+import { generateHeaders } from './utils';
 
 const AuthRequestParams = new URLSearchParams();
 AuthRequestParams.append('client_id', process.env.TWITCH_CLIENT_ID);
 AuthRequestParams.append('client_secret', process.env.TWITCH_CLIENT_SECRET);
 AuthRequestParams.append('grant_type', 'client_credentials');
 
-class Auth {
+class Core {
   access_token: string;
 
   status: boolean = false;
@@ -16,10 +17,7 @@ class Auth {
   }
 
   generateHeaders(): HeadersInit {
-    return {
-      Authorization: `Bearer ${this.access_token}`,
-      'client-id': process.env.TWITCH_CLIENT_ID,
-    };
+    return generateHeaders(this.access_token);
   }
 
   generateAuthToken(): void {
@@ -44,4 +42,4 @@ class Auth {
   };
 }
 
-export default new Auth();
+export default new Core();

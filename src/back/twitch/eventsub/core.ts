@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import Auth from '../auth';
+import Auth from '../auth/core';
 import { logError } from '../../utils/logger';
 
 class EventSub {

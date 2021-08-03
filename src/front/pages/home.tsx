@@ -16,7 +16,7 @@ const HomeWrapper = styled('div')`
 `;
 
 const Home = () => {
-  useLogin();
+  const error = useLogin();
   const loginUrl = useMemo(
     () => generateTwitchOAuthLink(process.env.TWITCH_CLIENT_ID),
     []
@@ -30,6 +30,7 @@ const Home = () => {
       <a href={loginUrl} target="_self">
         <Button type="button">Enter</Button>
       </a>
+      {error}
     </HomeWrapper>
   );
 };
