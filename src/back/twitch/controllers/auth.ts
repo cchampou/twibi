@@ -1,5 +1,5 @@
-import Helix from '../helix/core';
-import { generateJWT } from '../auth/utils';
+import Helix from '../services/helix/core';
+import { generateJWT } from '../services/auth/utils';
 import User from '../models/User';
 
 export const login = async (req, res) => {

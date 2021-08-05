@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import Auth from '../auth/core';
-import { logError } from '../../utils/logger';
+import { logError } from '../../../utils/logger';
 
 class EventSub {
   eventSubUrl: string = process.env.TWITCH_EVENTSUB_ROUTE;

@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { logError, logInfo } from '../../utils/logger';
+import { logError, logInfo } from '../../../utils/logger';
 import { generateHeaders } from './utils';
 
 const AuthRequestParams = new URLSearchParams();

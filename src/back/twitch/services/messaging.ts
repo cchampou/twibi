@@ -1,9 +1,9 @@
 import { Client } from 'tmi.js';
-import { logError, logInfo, logSuccess } from '../utils/logger';
-import { splitWords, trimStart } from '../utils/string';
-import Command from './models/Command';
-import { CommandType } from '../../common/types';
-import Notification from './models/Notification';
+import { logError, logInfo, logSuccess } from '../../utils/logger';
+import { splitWords, trimStart } from '../../utils/string';
+import Command from '../models/Command';
+import { CommandType } from '../../../common/types';
+import Notification from '../models/Notification';
 
 class TwitchMessaging {
   rootClient;
@@ -11,13 +11,12 @@ class TwitchMessaging {
   clients;
 
   constructor() {
+    this.clients = [];
     this.rootClient = this.connect(
       process.env.TWITCH_BOT_USERNAME,
       process.env.TWITCH_BOT_PASSWORD
     );
-    this.rootClient.on('message', this.onMessage);
-    this.rootClient.on('hosted', this.onHosted);
-    this.checkForNotificationNeed();
+    this.checkForNotificationNeed().then(() => null);
   }
 
   connect(username: string, password: string) {
@@ -26,30 +25,31 @@ class TwitchMessaging {
         username,
         password,
       },
-      channels: ['#k_talpa'],
+      channels: [username],
     });
     newClient
       .connect()
       .then(() => logSuccess(`New chat connected for user ${username}`))
       .catch(logError);
-
+    newClient.on('hosted', this.onHosted);
+    newClient.on('message', this.onMessage);
     return newClient;
   }
 
   checkForNotificationNeed = async () => {
     try {
-      const notifs = await Notification.find().populate('user');
-      notifs.map(({ user: { twitchUsername, twitchAccessToken } }) => {
-        this.connect(twitchUsername, twitchAccessToken);
-      });
+      const notifications = await Notification.find().populate('user');
+      notifications.forEach(
+        ({ user: { twitchUsername, twitchAccessToken } }: any) => {
+          this.clients.push(this.connect(twitchUsername, twitchAccessToken));
+        }
+      );
     } catch (e) {
       logError(e);
     }
   };
 
   onHosted = (channel, username, viewers) => {
-    // eslint-disable-next-line no-console
-    console.log(channel, username);
     this.rootClient
       .say(
         '#k_talpa',
@@ -60,7 +60,6 @@ class TwitchMessaging {
 
   onMessage = (channel, tags, message, self) => {
     if (self) return;
-    console.log(message);
     const words = splitWords(message);
     if (words[0][0] === '!') {
       this.commands(channel, tags, words);
@@ -72,7 +71,7 @@ class TwitchMessaging {
     if (found) {
       const { response, data } = found;
       data.push(['{me}', tags.username]);
-      this.rootClient.say(channel, this.populate(response, data));
+      this.rootClient.say(channel, response);
     }
   }
 
