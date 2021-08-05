@@ -7,9 +7,12 @@ import theme from './theme';
 
 const globalStyles = css`
   body {
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.black};
     margin: 0;
     color: ${theme.colors.white};
+    font-size: 30px;
+    font-family: Helvetica, Open-Sans;
+    font-weight: lighter;
   }
 `;
 
