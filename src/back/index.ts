@@ -3,7 +3,7 @@ import express from 'express';
 import fallback from 'express-history-api-fallback';
 import './core/database';
 import './discord/core';
-import './twitch/messaging';
+import './twitch/services/messaging';
 import Network from './network';
 
 import discordRouter from './discord/router';

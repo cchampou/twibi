@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { logError, logSuccess } from '../../utils/logger';
+import { logError, logInfo } from '../../../utils/logger';
 import { generateHeaders } from './utils';
 
 const AuthRequestParams = new URLSearchParams();
@@ -33,7 +33,7 @@ class Core {
   onSuccess = (json) => {
     this.access_token = json.access_token;
     this.status = true;
-    logSuccess('Successfully generated a Twitch token');
+    logInfo('Successfully generated a Twitch token');
   };
 
   onError = (e) => {

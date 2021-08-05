@@ -1,8 +1,8 @@
-import EventSub from '../eventsub/core';
+import EventSub from '../services/eventsub/core';
 import { logInfo } from '../../utils/logger';
 import { validateFields } from '../../utils/validate';
 import Discord from '../../discord/core';
-import HelixApi from '../helix/core';
+import HelixApi from '../services/helix/core';
 
 export const listSubscriptions = async (req, res) => {
   const result = await EventSub.listSubscriptions();

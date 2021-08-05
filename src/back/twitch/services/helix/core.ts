@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
-import { logError } from '../../utils/logger';
+import { logError } from '../../../utils/logger';
 import Auth from '../auth/core';
-import { Channel, User } from '../../../common/types';
+import { Channel, User } from '../../../../common/types';
 import { generateHeaders } from '../auth/utils';
 
 class HelixApi {

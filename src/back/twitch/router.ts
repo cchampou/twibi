@@ -11,12 +11,16 @@ import {
   listCommands,
 } from './controllers/commands';
 import { login } from './controllers/auth';
+import { subscribeHost } from './controllers/notification';
 
 const express = require('express');
 
 const router = express.Router();
 
 router.post('/login', login);
+
+// Notification subscribe
+router.post('/subscribe/host', subscribeHost);
 
 // Events
 router.get('/event', listSubscriptions);

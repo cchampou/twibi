@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Notifications from './notifications';
@@ -8,6 +8,8 @@ import theme from '../theme';
 import Settings from './settings';
 import withAuthHoc from '../modules/login/withAuth.hoc';
 import Profile from '../modules/profile/profile';
+import { postRequest } from '../utils/http';
+import { JWT } from '../modules/storage/storage.constants';
 
 const Wrapper = styled('section')`
   display: flex;
@@ -20,6 +22,15 @@ const MainSection = styled('section')`
 
 const Dashboard = () => {
   const { path, url } = useRouteMatch();
+  const handleClick = useCallback(() => {
+    postRequest(
+      '/twitch/subscribe/host',
+      {},
+      {
+        Authorization: `Bearer ${localStorage.getItem(JWT)}`,
+      }
+    ).then(() => null);
+  }, []);
 
   return (
     <Wrapper>
@@ -37,6 +48,9 @@ const Dashboard = () => {
           </Route>
           <Route>
             <Profile />
+            <button type="button" onClick={handleClick}>
+              Subscribe to host notification
+            </button>
           </Route>
         </Switch>
       </MainSection>

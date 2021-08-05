@@ -5,3 +5,5 @@ export const trimStart: (str: string, char: string) => string = (str, char) => {
   const newStr = str.slice(1);
   return trimStart(newStr, char);
 };
+
+export const removeBearerFromAuthorization = (str) => str.slice(7);

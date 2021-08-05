@@ -1,8 +1,8 @@
 import {
+  Channel,
+  Client,
   MessageEmbed,
   MessageEmbedOptions,
-  Client,
-  Channel,
   TextChannel,
 } from 'discord.js';
 import { logError, logSuccess } from '../utils/logger';
@@ -42,7 +42,7 @@ class DiscordClass {
   }
 
   onConnected = () => {
-    logSuccess(`Logged in as ${this.client.user.tag}!`);
+    logSuccess(`Logged in to Discord as ${this.client.user.tag}!`);
   };
 
   onError = (e) => {
