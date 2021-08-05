@@ -38,6 +38,7 @@ type PictureProps = {
   round?: boolean;
   size?: SizeEnum;
   src: string;
+  className?: string;
 };
 
 const Picture: FunctionComponent<PictureProps> = ({
@@ -46,6 +47,7 @@ const Picture: FunctionComponent<PictureProps> = ({
   round = false,
   size = SizeEnum.MEDIUM,
   src,
+  className,
 }) => (
   <StyledPicture
     alt={alt}
@@ -53,6 +55,7 @@ const Picture: FunctionComponent<PictureProps> = ({
     round={round}
     size={size}
     src={src}
+    className={className}
   />
 );
 
