@@ -29,7 +29,7 @@ const Dashboard = () => {
       {
         Authorization: `Bearer ${localStorage.getItem(JWT)}`,
       }
-    ).then(console.log);
+    ).then(() => null);
   }, []);
 
   return (
@@ -48,7 +48,9 @@ const Dashboard = () => {
           </Route>
           <Route>
             <Profile />
-            <button onClick={handleClick}>CLICK SUR MOOI FDP</button>
+            <button type="button" onClick={handleClick}>
+              Subscribe to host notification
+            </button>
           </Route>
         </Switch>
       </MainSection>
