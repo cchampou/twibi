@@ -16,6 +16,7 @@ import {
   subscribeHost,
   unsubscribeHost,
 } from './controllers/notification';
+import authMiddleware from '../core/auth.middleware';
 
 const express = require('express');
 
@@ -24,6 +25,7 @@ const router = express.Router();
 router.post('/login', login);
 
 // Notification subscribe
+router.use('/subscribe/host', authMiddleware);
 router.post('/subscribe/host', subscribeHost);
 router.get('/subscribe/host', getHost);
 router.delete('/subscribe/host', unsubscribeHost);

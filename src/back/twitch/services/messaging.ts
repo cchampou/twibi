@@ -1,5 +1,5 @@
 import { Client } from 'tmi.js';
-import { logError, logInfo, logSuccess } from '../../utils/logger';
+import { logError, logInfo, logSuccess, logWarn } from '../../utils/logger';
 import { splitWords, trimStart } from '../../utils/string';
 import Command from '../models/Command';
 import { CommandType } from '../../../common/types';
@@ -38,7 +38,7 @@ class TwitchMessaging {
 
   checkForNotificationNeed = async () => {
     this.clients.forEach((client) => {
-      client.disconnect().then(() => logSuccess('Client disconnected'));
+      client.disconnect().then(() => logWarn('Client disconnected'));
     });
     this.clients = [];
     try {
