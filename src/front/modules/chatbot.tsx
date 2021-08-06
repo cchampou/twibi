@@ -24,16 +24,20 @@ export default () => {
   );
 
   const fetchCommands = () => {
-    getJsonRequest('/twitch/commands').then((data) => setCommands(data));
+    getJsonRequest('/twitch/commands', {}).then((data) => setCommands(data));
   };
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      postRequest('/twitch/commands', {
-        command: newCommand,
-        response: newResponse,
-      }).then(() => {
+      postRequest(
+        '/twitch/commands',
+        {
+          command: newCommand,
+          response: newResponse,
+        },
+        {}
+      ).then(() => {
         fetchCommands();
       });
     },
