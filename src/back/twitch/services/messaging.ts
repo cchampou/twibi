@@ -53,9 +53,9 @@ class TwitchMessaging {
     }
   };
 
-  onHosted = (channel, username, viewers) => {
+  onHosted = (channel, username) => {
     this.rootClient
-      .say(channel, `${username} is hosting the stream with ${viewers} viewers`)
+      .say(channel, `imGlitch ${username} is hosting the stream ! imGlitch`)
       .catch(logInfo);
   };
 
