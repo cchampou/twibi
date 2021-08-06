@@ -38,7 +38,7 @@ class TwitchMessaging {
 
   checkForNotificationNeed = async () => {
     this.clients.forEach((client) => {
-      client.disconnect().then(logSuccess);
+      client.disconnect().then(() => logSuccess('Client disconnected'));
     });
     this.clients = [];
     try {

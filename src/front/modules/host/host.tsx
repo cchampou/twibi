@@ -4,15 +4,14 @@ import useHost from './useHost';
 const Host = () => {
   const { host, addHostNotification, deleteHostNotification } = useHost();
 
-  console.log(host);
-
   return (
     <>
-      <label>
+      <label htmlFor="host">
         <input
           type="checkbox"
+          id="host"
           checked={host}
-          onClick={host ? deleteHostNotification : addHostNotification}
+          onChange={host ? deleteHostNotification : addHostNotification}
         />
         &nbsp;Host notifications
       </label>
