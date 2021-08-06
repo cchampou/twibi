@@ -74,7 +74,7 @@ const Home = () => {
       <HomeWrapper>
         <Logo />
         <Heading level={1}>Twibi</Heading>
-        <Heading level={2}>Twitch & Discord tools</Heading>
+        <Heading level={2}>Twitch & social networks tools</Heading>
         <a href={loginUrl} target="_self">
           <Button type="button">Enter</Button>
         </a>
