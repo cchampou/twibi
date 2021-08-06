@@ -37,6 +37,10 @@ class TwitchMessaging {
   }
 
   checkForNotificationNeed = async () => {
+    this.clients.forEach((client) => {
+      client.disconnect().then(() => logSuccess('Client disconnected'));
+    });
+    this.clients = [];
     try {
       const notifications = await Notification.find().populate('user');
       notifications.forEach(
@@ -52,7 +56,7 @@ class TwitchMessaging {
   onHosted = (channel, username, viewers) => {
     this.rootClient
       .say(
-        '#k_talpa',
+        channel,
         `@${username} is hosting the stream with ${viewers} viewers`
       )
       .catch(logInfo);

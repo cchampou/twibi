@@ -10,7 +10,8 @@ export const getJsonRequest = (endpoint, headers) =>
     headers,
   }).then((res) => res.json());
 
-export const deleteRequest = (endpoint) =>
+export const deleteRequest = (endpoint, headers) =>
   fetch(endpoint, {
     method: 'DELETE',
+    headers,
   });

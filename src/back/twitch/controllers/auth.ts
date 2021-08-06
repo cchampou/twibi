@@ -1,11 +1,12 @@
 import Helix from '../services/helix/core';
 import { generateJWT } from '../services/auth/utils';
 import User from '../models/User';
+import whitelist from '../../../whitelist';
 
 export const login = async (req, res) => {
   try {
     const data = await Helix.getUser(req.body.token);
-    if (data.email !== 'clement@champouillon.com') {
+    if (!whitelist.includes(data.email)) {
       return res.status(401).send();
     }
     await User.create({

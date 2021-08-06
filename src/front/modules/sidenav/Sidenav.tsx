@@ -32,11 +32,11 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
   return (
     <SidenavWrapper>
       <Logo />
-      <SidenavItem to={`${baseUrl}/notifications`}>
-        Social Notifications
-      </SidenavItem>
+      {/* <SidenavItem to={`${baseUrl}/notifications`}> */}
+      {/*  Social Notifications */}
+      {/* </SidenavItem> */}
       <SidenavItem to={`${baseUrl}/bots`}>Chatbots 💬</SidenavItem>
-      <SidenavItem to={`${baseUrl}/settings`}>Settings ⚙️</SidenavItem>
+      {/* <SidenavItem to={`${baseUrl}/settings`}>Settings ⚙️</SidenavItem> */}
       <SidenavItem to="/" onClick={logout}>
         Logout ❌
       </SidenavItem>
