@@ -37,6 +37,7 @@ class TwitchMessaging {
   }
 
   checkForNotificationNeed = async () => {
+    this.clients = [];
     try {
       const notifications = await Notification.find().populate('user');
       notifications.forEach(

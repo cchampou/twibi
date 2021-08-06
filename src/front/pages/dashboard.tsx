@@ -22,15 +22,6 @@ const MainSection = styled('section')`
 
 const Dashboard = () => {
   const { path, url } = useRouteMatch();
-  const handleClick = useCallback(() => {
-    postRequest(
-      '/twitch/subscribe/host',
-      {},
-      {
-        Authorization: `Bearer ${localStorage.getItem(JWT)}`,
-      }
-    ).then(() => null);
-  }, []);
 
   return (
     <Wrapper>
@@ -48,9 +39,6 @@ const Dashboard = () => {
           </Route>
           <Route>
             <Profile />
-            <button type="button" onClick={handleClick}>
-              Subscribe to host notification
-            </button>
           </Route>
         </Switch>
       </MainSection>
