@@ -8,9 +8,10 @@ import { logError } from '../../utils/logger';
 export const subscribeHost = async (req, res) => {
   try {
     const token = removeBearerFromAuthorization(req.get('Authorization'));
-    const { email } = await verify(token, process.env.SECRET);
+    const { email, twitchUsername } = await verify(token, process.env.SECRET);
     const user = await User.findOne({
       email,
+      twitchUsername,
     });
     await Notification.create({ user });
     await TwitchMessaging.checkForNotificationNeed();
@@ -24,9 +25,10 @@ export const subscribeHost = async (req, res) => {
 export const unsubscribeHost = async (req, res) => {
   try {
     const token = removeBearerFromAuthorization(req.get('Authorization'));
-    const { email } = await verify(token, process.env.SECRET);
+    const { email, twitchUsername } = await verify(token, process.env.SECRET);
     const user = await User.findOne({
       email,
+      twitchUsername,
     });
     await Notification.deleteOne({ user });
     await TwitchMessaging.checkForNotificationNeed();
@@ -40,9 +42,10 @@ export const unsubscribeHost = async (req, res) => {
 export const getHost = async (req, res) => {
   try {
     const token = removeBearerFromAuthorization(req.get('Authorization'));
-    const { email } = await verify(token, process.env.SECRET);
+    const { email, twitchUsername } = await verify(token, process.env.SECRET);
     const user = await User.findOne({
       email,
+      twitchUsername,
     });
     const data = await Notification.findOne({ user });
     return res.send(data);

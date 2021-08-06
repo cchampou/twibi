@@ -14,7 +14,7 @@ export const login = async (req, res) => {
       twitchUsername: data.login,
       twitchAccessToken: req.body.token,
     });
-    const token = generateJWT(data.email);
+    const token = generateJWT(data.email, data.login);
     return res.send(token);
   } catch (e) {
     return res.status(500).send();
