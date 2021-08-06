@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import styled from '@emotion/styled';
 import Notifications from './notifications';
-import Commands from './commands';
+import Chatbot from './chatbot';
 import Sidenav from '../modules/sidenav/Sidenav';
 import theme from '../theme';
 import Settings from './settings';
@@ -30,7 +30,7 @@ const Dashboard = () => {
             <Notifications />
           </Route>
           <Route path={`${path}/bots`}>
-            <Commands />
+            <Chatbot />
           </Route>
           <Route path={`${path}/settings`}>
             <Settings />

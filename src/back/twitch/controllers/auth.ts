@@ -20,6 +20,7 @@ export const login = async (req, res) => {
       await User.create({
         email: data.email,
         twitchUsername: data.login,
+        twitchUserId: data.id,
         twitchAccessToken: req.body.token,
       });
     }

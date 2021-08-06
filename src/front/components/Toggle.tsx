@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { ChangeEventHandler, FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 
 const StyledCheckbox = styled('input')`
   line-height: 2rem;
 `;
 
-const Toggle = ({ id, className, checked, onChange }) => (
+type ToggleProps = {
+  className?: string;
+  id?: string;
+  checked: boolean;
+  onChange: ChangeEventHandler;
+};
+
+const Toggle: FunctionComponent<ToggleProps> = ({
+  id,
+  className,
+  checked,
+  onChange,
+}) => (
   <StyledCheckbox
     type="checkbox"
     id={id}

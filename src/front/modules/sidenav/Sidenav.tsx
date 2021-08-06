@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { faCommentDots, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiscord, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
 import { useLogout } from '../login/useLogin';
@@ -20,7 +21,8 @@ const SidenavWrapper = styled('div')`
 
 const SidenavItem = styled(Link)`
   font-family: Helvetica, sans-serif;
-  color: ${theme.colors.white};
+  color: ${({ disabled }) =>
+    disabled ? theme.colors.gray : theme.colors.white};
   text-decoration: none;
   text-align: center;
   padding: 1rem;
@@ -40,6 +42,14 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
       <SidenavItem to={`${baseUrl}/bots`}>
         Chatbots&nbsp;
         <FontAwesomeIcon icon={faCommentDots} />
+      </SidenavItem>
+      <SidenavItem disabled>
+        Discord&nbsp;
+        <FontAwesomeIcon icon={faDiscord} />
+      </SidenavItem>
+      <SidenavItem disabled>
+        Twitter&nbsp;
+        <FontAwesomeIcon icon={faTwitter} />
       </SidenavItem>
       {/* <SidenavItem to={`${baseUrl}/settings`}>Settings ⚙️</SidenavItem> */}
       <SidenavItem to="/" onClick={logout}>

@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import Auth from '../auth/core';
-import { logError } from '../../../utils/logger';
+import { logError, logInfo } from '../../../utils/logger';
 
 class EventSub {
   eventSubUrl: string = process.env.TWITCH_EVENTSUB_ROUTE;
@@ -15,7 +15,8 @@ class EventSub {
       .catch(this.onError);
   }
 
-  createSubscription() {
+  createSubscription(type?: string, userId?: string) {
+    logInfo('Creating subscription');
     return fetch(this.eventSubUrl, {
       method: 'POST',
       headers: {
@@ -23,10 +24,10 @@ class EventSub {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        type: 'stream.online',
+        type: type || 'stream.online',
         version: '1',
         condition: {
-          broadcaster_user_id: '548876799',
+          broadcaster_user_id: userId || '548876799',
         },
         transport: {
           method: 'webhook',
@@ -48,6 +49,7 @@ class EventSub {
   }
 
   onSuccess = (jsonResponse) => {
+    logError(jsonResponse.message);
     const { data } = jsonResponse;
     return data;
   };
