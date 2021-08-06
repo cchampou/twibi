@@ -15,7 +15,7 @@ const Wrapper = styled('section')`
 const MainSection = styled('section')`
   padding: 2rem;
   flex: 1;
-  background-color: ${theme.colors.black};
+  background-color: ${theme.colors.gray};
 `;
 
 const Dashboard = () => {

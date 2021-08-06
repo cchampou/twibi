@@ -14,8 +14,8 @@ const SidenavWrapper = styled('div')`
   height: 100vh;
   align-items: center;
   z-index: 1;
-  box-shadow: 0 0 10px black;
-  background-color: black;
+  box-shadow: 0 0 10px ${theme.colors.black};
+  background-color: ${theme.colors.black};
 `;
 
 const SidenavItem = styled(Link)`

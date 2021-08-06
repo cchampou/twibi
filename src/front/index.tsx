@@ -10,7 +10,7 @@ const globalStyles = css`
     background-color: ${theme.colors.black};
     margin: 0;
     color: ${theme.colors.white};
-    font-size: 30px;
+    font-size: 20px;
     font-family: Helvetica, Open-Sans;
     font-weight: lighter;
   }
