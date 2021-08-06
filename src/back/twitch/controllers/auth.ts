@@ -6,7 +6,7 @@ import whitelist from '../../../whitelist';
 export const login = async (req, res) => {
   try {
     const data = await Helix.getUser(req.body.token);
-    if (!whitelist.includes(data.email)) {
+    if (!whitelist.includes(data.email.toLocaleLowerCase())) {
       return res.status(401).send();
     }
     const existingUser = await User.findOne({
