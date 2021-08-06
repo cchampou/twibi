@@ -43,6 +43,7 @@ class TwitchMessaging {
     this.clients = [];
     try {
       const notifications = await Notification.find().populate('user');
+      console.log(notifications.length);
       notifications.forEach(
         ({ user: { twitchUsername, twitchAccessToken } }: any) => {
           this.clients.push(this.connect(twitchUsername, twitchAccessToken));
@@ -55,10 +56,7 @@ class TwitchMessaging {
 
   onHosted = (channel, username, viewers) => {
     this.rootClient
-      .say(
-        channel,
-        `@${username} is hosting the stream with ${viewers} viewers`
-      )
+      .say(channel, `${username} is hosting the stream with ${viewers} viewers`)
       .catch(logInfo);
   };
 
@@ -73,8 +71,8 @@ class TwitchMessaging {
   async commands(channel, tags, words) {
     const found = await this.findCommand(words);
     if (found) {
-      const { response, data } = found;
-      data.push(['{me}', tags.username]);
+      const { response } = found;
+      // data.push(['{me}', tags.username]);
       this.rootClient.say(channel, response);
     }
   }

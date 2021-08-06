@@ -45,7 +45,7 @@ export default () => {
   );
 
   const onDelete = useCallback(() => {
-    deleteRequest('/twitch/commands').then(() => null);
+    deleteRequest('/twitch/commands', {}).then(() => null);
     fetchCommands();
   }, []);
 
