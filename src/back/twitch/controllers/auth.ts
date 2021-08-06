@@ -9,11 +9,20 @@ export const login = async (req, res) => {
     if (!whitelist.includes(data.email)) {
       return res.status(401).send();
     }
-    await User.create({
+    const existingUser = await User.findOne({
       email: data.email,
       twitchUsername: data.login,
-      twitchAccessToken: req.body.token,
     });
+    if (existingUser) {
+      existingUser.twitchAccessToken = req.body.token;
+      await existingUser.save();
+    } else {
+      await User.create({
+        email: data.email,
+        twitchUsername: data.login,
+        twitchAccessToken: req.body.token,
+      });
+    }
     const token = generateJWT(data.email, data.login);
     return res.send(token);
   } catch (e) {

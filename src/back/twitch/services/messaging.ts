@@ -43,7 +43,6 @@ class TwitchMessaging {
     this.clients = [];
     try {
       const notifications = await Notification.find().populate('user');
-      console.log(notifications.length);
       notifications.forEach(
         ({ user: { twitchUsername, twitchAccessToken } }: any) => {
           this.clients.push(this.connect(twitchUsername, twitchAccessToken));
