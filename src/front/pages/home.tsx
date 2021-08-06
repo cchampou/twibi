@@ -85,8 +85,8 @@ const Home = () => {
         <UnderWrapper>
           <Heading level={2}>Twitch chat notifications</Heading>
           <Paragraph>
-            Get informed when a viewer is follow, hosting, subscribing, and more
-            !
+            Get informed when a viewer is following, hosting, subscribing, and
+            more !
           </Paragraph>
         </UnderWrapper>
         <UnderWrapper>
