@@ -13,7 +13,7 @@ const SidenavWrapper = styled('div')`
   align-items: center;
   z-index: 1;
   box-shadow: 0 0 10px black;
-  background-color: ${theme.colors.secondary};
+  background-color: black;
 `;
 
 const SidenavItem = styled(Link)`
