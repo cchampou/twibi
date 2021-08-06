@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { faCommentDots, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from '../../components/Logo';
 import theme from '../../theme';
 import { useLogout } from '../login/useLogin';
@@ -35,10 +37,14 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
       {/* <SidenavItem to={`${baseUrl}/notifications`}> */}
       {/*  Social Notifications */}
       {/* </SidenavItem> */}
-      <SidenavItem to={`${baseUrl}/bots`}>Chatbots 💬</SidenavItem>
+      <SidenavItem to={`${baseUrl}/bots`}>
+        Chatbots&nbsp;
+        <FontAwesomeIcon icon={faCommentDots} />
+      </SidenavItem>
       {/* <SidenavItem to={`${baseUrl}/settings`}>Settings ⚙️</SidenavItem> */}
       <SidenavItem to="/" onClick={logout}>
-        Logout ❌
+        Logout&nbsp;
+        <FontAwesomeIcon icon={faSignOutAlt} />
       </SidenavItem>
     </SidenavWrapper>
   );
