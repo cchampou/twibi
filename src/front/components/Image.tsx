@@ -30,6 +30,7 @@ type StyledPictureProps = {
 const StyledPicture = styled('img')<StyledPictureProps>`
   border-radius: ${getBorderRadius};
   height: ${getSize};
+  cursor: ${({ onClick }) => (onClick ? 'pointer' : null)};
 `;
 
 type PictureProps = {
