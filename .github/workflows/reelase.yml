@@ -6,14 +6,20 @@ on:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/checkout@v2
+      - name: Cache modules
+        id: cache-modules
+        uses: actions/cache@v2
         with:
-          node-version: 14
+          path: node_modules
+          key: ${{ runner.os }}-modules
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - name: Install dependencies
         run: yarn
       - name: Release
