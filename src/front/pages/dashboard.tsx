@@ -39,8 +39,8 @@ const Dashboard = () => {
           <Route>
             <Profile />
             <Heading level={2}>News</Heading>
-            Chatbot section is improving. You should now be able to enable chat
-            notifications for host, follow, and subscription events.
+            Chatbot section is being improved. You should now be able to enable
+            chat notifications for host, follow, and subscription events.
           </Route>
         </Switch>
       </MainSection>
