@@ -8,6 +8,7 @@ import theme from '../theme';
 import Settings from './settings';
 import withAuthHoc from '../modules/login/withAuth.hoc';
 import Profile from '../modules/profile/profile';
+import Heading from '../components/Heading';
 
 const Wrapper = styled('section')`
   display: flex;
@@ -37,6 +38,9 @@ const Dashboard = () => {
           </Route>
           <Route>
             <Profile />
+            <Heading level={2}>News</Heading>
+            Chatbot section is improving. You should now be able to enable chat
+            notifications for host, follow, and subscription events.
           </Route>
         </Switch>
       </MainSection>
