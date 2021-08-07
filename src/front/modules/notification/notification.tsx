@@ -26,7 +26,7 @@ const mapping = {
     title: 'Follow notifications',
     text: '[username] is now following you !',
   },
-  subscription: {
+  subscribe: {
     title: 'Subscription notifications',
     text: '[username] subscribed to the channel !',
   },

@@ -7,7 +7,7 @@ const Chatbot = () => (
     {/* <Chatbot /> */}
     <Notification type="host" />
     <Notification type="follow" />
-    {/* <Notification type="subscription" /> */}
+    <Notification type="subscribe" />
   </>
 );
 

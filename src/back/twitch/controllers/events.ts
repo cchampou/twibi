@@ -1,7 +1,6 @@
 import EventSub from '../services/eventsub/core';
 import { logError, logInfo } from '../../utils/logger';
 import { validateFields } from '../../utils/validate';
-import HelixApi from '../services/helix/core';
 import Notification from '../models/Notification';
 import User from '../models/User';
 import Messaging from '../services/messaging';
@@ -14,11 +13,6 @@ export const listSubscriptions = async (req, res) => {
 export const createSubscription = async (req, res) => {
   const result = await EventSub.createSubscription();
   return res.send(result);
-};
-
-export const getChannelInfo = async (req, res) => {
-  const data = await HelixApi.getChannelInfo(548876799);
-  return res.send(data);
 };
 
 export const callback = async (req, res) => {
@@ -42,6 +36,23 @@ export const callback = async (req, res) => {
           .say(
             targetUser.twitchUsername,
             `${req.body.event.user_name} is now following you !`
+          )
+          .catch(logError);
+      }
+    }
+    if (req.body.subscription.type === 'channel.subscribe') {
+      const targetUser = await User.findOne({
+        twitchUserId: req.body.event.broadcaster_user_id,
+      });
+      const notificationInstruction = await Notification.findOne({
+        eventType: 'subscribe',
+        user: targetUser,
+      });
+      if (notificationInstruction) {
+        Messaging.rootClient
+          .say(
+            targetUser.twitchUsername,
+            `${req.body.event.user_name} subscribed to the channel !`
           )
           .catch(logError);
       }
