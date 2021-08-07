@@ -1,7 +1,6 @@
 import {
   callback,
   createSubscription,
-  getChannelInfo,
   listSubscriptions,
   revokeSubscription,
 } from './controllers/events';
