@@ -38,7 +38,8 @@
     "start:dev": "nodemon dist/server.js",
     "build": "webpack --config config/webpack.config.js",
     "build:dev": "yarn build -w",
-    "lint": "eslint . --cache"
+    "lint": "eslint . --cache",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
