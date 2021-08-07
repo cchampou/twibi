@@ -1,6 +1,6 @@
 {
   "name": "twitch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "src/back/index.ts",
   "license": "MIT",
   "private": true,
