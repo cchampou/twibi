@@ -32,20 +32,21 @@ type NotificationType = {
 const mapping = {
   host: {
     title: 'Host notifications',
-    text: '[username] is hosting the stream !',
+    text: '{username} is hosting the stream !',
   },
   follow: {
     title: 'Follow notifications',
-    text: '[username] is now following you !',
+    text: '{username} is now following you !',
   },
   subscribe: {
     title: 'Subscription notifications',
-    text: '[username] subscribed to the channel !',
+    text: '{username} subscribed to the channel !',
   },
 };
 
 const Notification: FunctionComponent<NotificationType> = ({ type }) => {
-  const { notify, addNotification, deleteNotification } = useNotification(type);
+  const { notify, addNotification, deleteNotification, text, changeText } =
+    useNotification(type, mapping[type].text);
 
   return (
     <Wrapper>
@@ -60,8 +61,10 @@ const Notification: FunctionComponent<NotificationType> = ({ type }) => {
       <br />
       {notify && (
         <Form>
-          <Input value={mapping[type].text} />
-          <Button type="button">Save</Button>
+          <Input value={text} onChange={changeText} />
+          <Button type="submit" onClick={addNotification}>
+            Save
+          </Button>
         </Form>
       )}
     </Wrapper>

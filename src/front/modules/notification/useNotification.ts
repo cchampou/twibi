@@ -2,25 +2,41 @@ import { useCallback, useEffect, useState } from 'react';
 import { deleteRequest, getJsonRequest, postRequest } from '../../utils/http';
 import { JWT } from '../storage/storage.constants';
 
-const useNotification = (type) => {
+const useNotification = (type, defaultText) => {
   const [notified, setNotified] = useState(null);
+  const [text, setText] = useState(defaultText);
+
+  const changeText = useCallback((e) => {
+    setText(e.target.value);
+  }, []);
+
   useEffect(() => {
     getJsonRequest(`/twitch/subscribe/${type}`, {
       Authorization: `Bearer ${localStorage.getItem(JWT)}`,
     }).then((res) => {
-      setNotified(res);
+      if (res) {
+        setText(res.text);
+        setNotified(true);
+      }
     });
   }, []);
 
-  const addHostNotification = useCallback(() => {
-    postRequest(
-      `/twitch/subscribe/${type}`,
-      {},
-      {
-        Authorization: `Bearer ${localStorage.getItem(JWT)}`,
-      }
-    ).then(() => setNotified(true));
-  }, []);
+  const addNotification = useCallback(
+    (e) => {
+      e.preventDefault();
+      postRequest(
+        `/twitch/subscribe/${type}`,
+        {
+          text,
+        },
+        {
+          Authorization: `Bearer ${localStorage.getItem(JWT)}`,
+        }
+      ).then(() => setNotified(true));
+    },
+    [text]
+  );
+
   const deleteHostNotification = useCallback(() => {
     deleteRequest(`/twitch/subscribe/${type}`, {
       Authorization: `Bearer ${localStorage.getItem(JWT)}`,
@@ -30,7 +46,9 @@ const useNotification = (type) => {
   return {
     notify: Boolean(notified),
     deleteNotification: deleteHostNotification,
-    addNotification: addHostNotification,
+    addNotification,
+    text,
+    changeText,
   };
 };
 
