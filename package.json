@@ -37,6 +37,7 @@
     "start": "node dist/server.js",
     "start:dev": "nodemon dist/server.js",
     "build": "webpack --config config/webpack.config.js",
+    "build:dev": "yarn build -w",
     "lint": "eslint . --cache"
   },
   "devDependencies": {

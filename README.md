@@ -31,7 +31,7 @@ npm install
 
 Then, you need to start a build server, with watchers on.
 ```shell
-yarn build -w
+yarn build:dev
 ```
 
 Finally, you can start a dev server with watchers on.
