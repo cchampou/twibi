@@ -13,7 +13,7 @@
     "start:dev": "nodemon dist/server.js",
     "build": "webpack --config webpack.config.js --mode=production",
     "build:dev": "yarn build --mode=development -w",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "lint": "eslint . --cache",
     "semantic-release": "semantic-release"
   },

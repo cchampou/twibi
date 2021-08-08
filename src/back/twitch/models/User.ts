@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-interface UserType {
+export interface UserType {
   twitchUsername: string;
   email: string;
   twitchAccessToken: string;
