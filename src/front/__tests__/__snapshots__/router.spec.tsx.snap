@@ -10,9 +10,10 @@ Object {
       >
         <img
           alt="Twibi logo"
-          class="css-73mmas"
+          class="css-n43cfm"
           size="1"
           src="a random file"
+          width="100px"
         />
         <h1
           class="css-mq6yo6"
@@ -37,9 +38,10 @@ Object {
         </a>
         <img
           alt="down"
-          class="css-10tuai9"
+          class="css-ts4ws1"
           size="2"
           src="a random file"
+          width="50px"
         />
       </div>
       <div
@@ -64,9 +66,10 @@ Object {
         >
           <img
             alt="twitch"
-            class="css-146q2af"
+            class="css-ycy6ia"
             size="2"
             src="a random file"
+            width="50px"
           />
         </div>
       </div>
@@ -78,9 +81,10 @@ Object {
         >
           <img
             alt="discord"
-            class="css-146q2af"
+            class="css-ycy6ia"
             size="2"
             src="a random file"
+            width="50px"
           />
         </div>
         <div
@@ -104,6 +108,7 @@ Object {
         <a
           class="css-9srvqk"
           href="https://www.github.com/cchampou/twibi"
+          rel="noopener"
           target="_blank"
         >
           <svg
@@ -147,9 +152,10 @@ Object {
     >
       <img
         alt="Twibi logo"
-        class="css-73mmas"
+        class="css-n43cfm"
         size="1"
         src="a random file"
+        width="100px"
       />
       <h1
         class="css-mq6yo6"
@@ -174,9 +180,10 @@ Object {
       </a>
       <img
         alt="down"
-        class="css-10tuai9"
+        class="css-ts4ws1"
         size="2"
         src="a random file"
+        width="50px"
       />
     </div>
     <div
@@ -201,9 +208,10 @@ Object {
       >
         <img
           alt="twitch"
-          class="css-146q2af"
+          class="css-ycy6ia"
           size="2"
           src="a random file"
+          width="50px"
         />
       </div>
     </div>
@@ -215,9 +223,10 @@ Object {
       >
         <img
           alt="discord"
-          class="css-146q2af"
+          class="css-ycy6ia"
           size="2"
           src="a random file"
+          width="50px"
         />
       </div>
       <div
@@ -241,6 +250,7 @@ Object {
       <a
         class="css-9srvqk"
         href="https://www.github.com/cchampou/twibi"
+        rel="noopener"
         target="_blank"
       >
         <svg
