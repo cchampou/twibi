@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import { Global, css } from '@emotion/react';
 import Router from './router';
 import theme from './theme';
