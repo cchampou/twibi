@@ -1,5 +1,6 @@
 # Twibi
-[![CI](https://github.com/cchampou/twibi/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/cchampou/twibi/actions/workflows/main.yml)
+[![CI](https://github.com/cchampou/twibi/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/cchampou/twibi/actions/workflows/CI.yml)
+[![codecov](https://codecov.io/gh/cchampou/twibi/branch/main/graph/badge.svg?token=ESW60FVUMJ)](https://codecov.io/gh/cchampou/twibi)
 
 Cross Twitch &amp; and social network system, with notifications, chatbots & more...
 
