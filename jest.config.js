@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: 'src',
+  rootDir: __dirname,
   transformIgnorePatterns: ['/node_modules/(?!(pupa|escape-goat)).+\\.js$'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx,js,jsx}',
