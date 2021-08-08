@@ -125,6 +125,7 @@ const Home = () => {
         <GithubLink
           href="https://www.github.com/cchampou/twibi"
           target="_blank"
+          rel="noopener"
         >
           <FontAwesomeIcon icon={faGithub} />
           &nbsp;Github&nbsp;
