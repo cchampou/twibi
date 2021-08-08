@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`streamToDiscordEmbed should match the previous format 1`] = `
+Object {
+  "author": Object {
+    "iconURL": "https://images-ext-1.discordapp.net/external/Ekh9K5IqwNP313ZdvmYFf57f_FIdh0JDgruQBxuq1lw/https/static-cdn.jtvnw.net/jtv_user_pictures/d0fc61fb-b675-4ce7-b37a-63a1a22c5926-profile_image-300x300.png",
+    "name": "Carorockwell",
+    "url": "https://www.twitch.tv/carorockwell",
+  },
+  "color": 16711680,
+  "description": "Viens nous rejoindre sur Twitch !",
+  "fields": Array [
+    Object {
+      "inline": true,
+      "name": "👇",
+      "value": "https://www.twitch.tv/carorockwell",
+    },
+  ],
+  "image": Object {
+    "proxy_url": "https://media.discordapp.net/attachments/828259641171378198/847016522668965918/IMG_20210518_215042_152.jpg?width=386&height=686",
+  },
+  "thumbnail": Object {
+    "proxy_url": "https://images-ext-1.discordapp.net/external/Ekh9K5IqwNP313ZdvmYFf57f_FIdh0JDgruQBxuq1lw/https/static-cdn.jtvnw.net/jtv_user_pictures/d0fc61fb-b675-4ce7-b37a-63a1a22c5926-profile_image-300x300.png",
+  },
+  "title": "Titre du stream",
+  "url": "https://www.twitch.tv/carorockwell",
+}
+`;
