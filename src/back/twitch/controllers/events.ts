@@ -37,6 +37,7 @@ export const callback = async (req, res) => {
       const targetUser = await User.findOne({
         twitchUserId: req.body.event.broadcaster_user_id,
       });
+      if (!targetUser) return res.send('OK');
       const notificationInstruction = await Notification.findOne({
         eventType: 'follow',
         user: targetUser.id,
@@ -51,6 +52,7 @@ export const callback = async (req, res) => {
       const targetUser = await User.findOne({
         twitchUserId: req.body.event.broadcaster_user_id,
       });
+      if (!targetUser) return res.send('OK');
       const notificationInstruction = await Notification.findOne({
         eventType: 'subscribe',
         user: targetUser.id,
