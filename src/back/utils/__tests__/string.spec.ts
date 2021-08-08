@@ -1,6 +1,30 @@
-import { insertVariables } from '../string';
+import { insertVariables, splitWords, trimStart } from '../string';
 
 const sampleVariables = { username: 'k_talpa' };
+
+describe('splitWords', () => {
+  test.each([
+    ['toto', ['toto']],
+    ['a very interesting phrase', ['a', 'very', 'interesting', 'phrase']],
+    ['', ['']],
+    [' ', ['', '']],
+    [' . ', ['', '.', '']],
+  ])('splitWords("%s")', (input, output) => {
+    expect(splitWords(input)).toEqual(output);
+  });
+});
+
+describe('trimStart', () => {
+  test.each([
+    ['####toto', '#', 'toto'],
+    ['####toto', ' ', '####toto'],
+    ['## toto', '#', ' toto'],
+    ['.###toto', '.', '###toto'],
+    [' .####toto', '.', ' .####toto'],
+  ])('trimStart("%s", "%s")', (input, char, output) => {
+    expect(trimStart(input, char)).toEqual(output);
+  });
+});
 
 describe('insertVariables', () => {
   it('should return the text as it when no variable slots', () => {

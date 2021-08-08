@@ -37,4 +37,7 @@ jobs:
         with:
           node-version: '14'
       - run: yarn install
-      - run: yarn test
+      - run: yarn test --coverage
+      - uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          lcov-file: ./coverage/lcov.info
