@@ -40,13 +40,11 @@ describe('insertVariables', () => {
     );
   });
 
-  it('should throw with bad variable slots', () => {
+  it('should return original text with bad variable slots', () => {
     // eslint-disable-next-line no-console
     console.error = jest.fn();
-    try {
-      insertVariables('Hello {user} !', sampleVariables);
-    } catch (e) {
-      expect(e).toEqual('Missing a value for the placeholder: user');
-    }
+    expect(insertVariables('Hello {user} !', sampleVariables)).toEqual(
+      'Hello {user} !'
+    );
   });
 });
