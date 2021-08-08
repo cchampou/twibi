@@ -4,6 +4,24 @@
   "main": "src/back/index.ts",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cchampou/twibi.git"
+  },
+  "scripts": {
+    "start": "node dist/server.js",
+    "start:dev": "nodemon dist/server.js",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "build:dev": "yarn build --mode=development -w",
+    "test": "jest",
+    "lint": "eslint . --cache",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -33,20 +51,6 @@
     "stormdb": "^0.4.1",
     "tmi.js": "^1.8.3",
     "typescript": "^4.3.2"
-  },
-  "scripts": {
-    "start": "node dist/server.js",
-    "start:dev": "nodemon dist/server.js",
-    "build": "webpack --config webpack.config.js",
-    "build:dev": "yarn build -w",
-    "test": "jest",
-    "lint": "eslint . --cache",
-    "semantic-release": "semantic-release"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -87,9 +91,5 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-node-externals": "^3.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cchampou/twibi.git"
   }
 }
