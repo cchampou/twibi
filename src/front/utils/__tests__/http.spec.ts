@@ -1,6 +1,6 @@
 import { postRequest } from '../http';
 
-global.fetch = jest.fn(() => Promise.resolve('OK'));
+(global as any).fetch = jest.fn(() => Promise.resolve('OK'));
 
 const fakeData = { one: 'payload' };
 
@@ -20,7 +20,7 @@ describe('postRequest', () => {
   });
 
   it('should throw in case of error', async () => {
-    global.fetch.mockImplementation(() => {
+    (global.fetch as jest.Mock).mockImplementation(() => {
       throw Error('FATAL');
     });
     try {
