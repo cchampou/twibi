@@ -25,12 +25,9 @@ const globalStyles = css`
   }
 `;
 
-const socket = io('/');
-
-socket.on('connect', () => {});
-
-// eslint-disable-next-line no-console
-console.log('Script loaded');
+// const socket = io('/');
+//
+// socket.on('connect', () => {});
 
 const App = () => (
   <>
