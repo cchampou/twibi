@@ -20,7 +20,7 @@ const sendMessage = (notificationInstruction, targetUser, variables) => {
   Messaging.rootClient
     .say(
       targetUser.twitchUsername,
-      insertVariables(notificationInstruction.text, variables)
+      insertVariables(notificationInstruction.text || '', variables)
     )
     .catch(logError);
 };
