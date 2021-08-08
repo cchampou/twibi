@@ -39,7 +39,7 @@ export const callback = async (req, res) => {
       });
       const notificationInstruction = await Notification.findOne({
         eventType: 'follow',
-        user: targetUser,
+        user: targetUser.id,
       });
       if (notificationInstruction) {
         sendMessage(notificationInstruction, targetUser, {
@@ -53,7 +53,7 @@ export const callback = async (req, res) => {
       });
       const notificationInstruction = await Notification.findOne({
         eventType: 'subscribe',
-        user: targetUser,
+        user: targetUser.id,
       });
       if (notificationInstruction) {
         sendMessage(notificationInstruction, targetUser, {
