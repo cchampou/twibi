@@ -2,9 +2,10 @@
   "compilerOptions": {
     "outDir": "./built",
     "allowJs": true,
-    "target": "es5",
+    "target": "esnext",
     "jsx": "react",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node"
   },
   "include": ["src", "./types/custom.d.ts"]
 }

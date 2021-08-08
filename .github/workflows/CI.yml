@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
+  Lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,3 +23,18 @@ jobs:
           node-version: '14'
       - run: yarn install
       - run: yarn lint
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache modules
+        id: cache-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-modules
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: yarn install
+      - run: yarn test

@@ -8,7 +8,7 @@ const commonConfig = {
   devtool: 'inline-cheap-module-source-map',
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, 'dist'),
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
@@ -19,7 +19,7 @@ const commonConfig = {
   plugins: [
     new Dotenv(),
     new CopyPlugin({
-      patterns: [{ from: 'public', to: path.join(__dirname, '../dist') }],
+      patterns: [{ from: 'public', to: path.join(__dirname, 'dist') }],
     }),
   ],
 };
@@ -36,17 +36,7 @@ const clientConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'usage',
-                  corejs: { version: '3.13', proposals: true },
-                },
-              ],
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
+            configFile: path.resolve('babel.config.js'),
           },
         },
       },
@@ -65,29 +55,32 @@ const clientConfig = {
 
 const serverConfig = {
   target: 'node',
-  externals: [nodeExternals()],
+  externalsPresets: { node: true },
+  externals: [
+    nodeExternals({
+      allowlist: ['pupa', 'escape-goat'],
+    }),
+  ],
   entry: {
     server: './src/back/index.ts',
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.[j|t]sx?$/,
+        exclude: {
+          and: [/node_modules/], // Exclude libraries in node_modules ...
+          not: [
+            // Except for a few of them that needs to be transpiled because they use modern syntax
+            /pupa/,
+          ],
+        },
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-typescript'],
+            configFile: path.resolve('babel.config.js'),
           },
         },
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
       },
     ],
   },

@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-import * as chalk from 'chalk';
+import { bold, white } from 'chalk';
 
-const error = chalk.bold.redBright;
-const warn = chalk.bold.yellow;
-const success = chalk.bold.greenBright;
-const info = chalk.white;
+const error = bold.redBright;
+const warn = bold.yellow;
+const success = bold.greenBright;
+const info = white;
 
 export const logError = (...args) => console.error(error(args));
 export const logWarn = (...args) => console.warn(warn(args));

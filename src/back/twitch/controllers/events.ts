@@ -4,6 +4,7 @@ import { validateFields } from '../../utils/validate';
 import Notification from '../models/Notification';
 import User from '../models/User';
 import Messaging from '../services/messaging';
+import { insertVariables } from '../../utils/string';
 
 export const listSubscriptions = async (req, res) => {
   const result = await EventSub.listSubscriptions();
@@ -13,6 +14,15 @@ export const listSubscriptions = async (req, res) => {
 export const createSubscription = async (req, res) => {
   const result = await EventSub.createSubscription();
   return res.send(result);
+};
+
+const sendMessage = (notificationInstruction, targetUser, variables) => {
+  Messaging.rootClient
+    .say(
+      targetUser.twitchUsername,
+      insertVariables(notificationInstruction.text, variables)
+    )
+    .catch(logError);
 };
 
 export const callback = async (req, res) => {
@@ -29,15 +39,12 @@ export const callback = async (req, res) => {
       });
       const notificationInstruction = await Notification.findOne({
         eventType: 'follow',
-        user: targetUser,
+        user: targetUser.id,
       });
       if (notificationInstruction) {
-        Messaging.rootClient
-          .say(
-            targetUser.twitchUsername,
-            `${req.body.event.user_name} is now following you !`
-          )
-          .catch(logError);
+        sendMessage(notificationInstruction, targetUser, {
+          username: req.body.event.user_name,
+        });
       }
     }
     if (req.body.subscription.type === 'channel.subscribe') {
@@ -46,36 +53,14 @@ export const callback = async (req, res) => {
       });
       const notificationInstruction = await Notification.findOne({
         eventType: 'subscribe',
-        user: targetUser,
+        user: targetUser.id,
       });
       if (notificationInstruction) {
-        Messaging.rootClient
-          .say(
-            targetUser.twitchUsername,
-            `${req.body.event.user_name} subscribed to the channel !`
-          )
-          .catch(logError);
+        sendMessage(notificationInstruction, targetUser, {
+          username: req.body.event.user_name,
+        });
       }
     }
-    // const { title } = await HelixApi.getChannelInfo(548876799);
-    // Discord.sendEmbedMessage(
-    //   'Hey @everyone ! Caro is live over at https://www.twitch.tv/carorockwell ! Venez les insolents !',
-    //   {
-    //     author: {
-    //       name: 'Carorockwell',
-    //       icon_url:
-    //         'https://images-ext-1.discordapp.net/external/Ekh9K5IqwNP313ZdvmYFf57f_FIdh0JDgruQBxuq1lw/https/static-cdn.jtvnw.net/jtv_user_pictures/d0fc61fb-b675-4ce7-b37a-63a1a22c5926-profile_image-300x300.png',
-    //       url: 'https://www.twitch.tv/carorockwell',
-    //     },
-    //     title,
-    //     image: {
-    //       url: 'https://media.discordapp.net/attachments/828259641171378198/865314428873474088/Screenshot_20210715-212956_Instagram.jpg?width=404&height=686',
-    //     },
-    //     color: 'RED',
-    //     url: 'https://www.twitch.tv/carorockwell',
-    //     description: 'Carorockwell is now live on Twitch!',
-    //   }
-    // );
     return res.send('OK');
   }
   return res.send('OK');

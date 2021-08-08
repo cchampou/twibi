@@ -1,6 +1,6 @@
 import { Client } from 'tmi.js';
 import { logError, logInfo, logSuccess, logWarn } from '../../utils/logger';
-import { splitWords, trimStart } from '../../utils/string';
+import { insertVariables, splitWords, trimStart } from '../../utils/string';
 import Command from '../models/Command';
 import { CommandType } from '../../../common/types';
 import Notification from '../models/Notification';
@@ -19,7 +19,11 @@ class TwitchMessaging {
     this.checkForNotificationNeed().then(() => null);
   }
 
-  connect(username: string, password: string) {
+  connect(
+    username: string,
+    password: string,
+    opts: { hostText: string } = { hostText: 'New host' }
+  ) {
     const newClient = new Client({
       identity: {
         username,
@@ -31,7 +35,7 @@ class TwitchMessaging {
       .connect()
       .then(() => logSuccess(`New chat connected for user ${username}`))
       .catch(logError);
-    newClient.on('hosted', this.onHosted);
+    newClient.on('hosted', this.onHosted(opts.hostText));
     newClient.on('message', this.onMessage);
     return newClient;
   }
@@ -46,8 +50,10 @@ class TwitchMessaging {
         eventType: 'host',
       }).populate('user');
       notifications.forEach(
-        ({ user: { twitchUsername, twitchAccessToken } }: any) => {
-          this.clients.push(this.connect(twitchUsername, twitchAccessToken));
+        ({ user: { twitchUsername, twitchAccessToken }, text }: any) => {
+          this.clients.push(
+            this.connect(twitchUsername, twitchAccessToken, { hostText: text })
+          );
         }
       );
     } catch (e) {
@@ -55,9 +61,9 @@ class TwitchMessaging {
     }
   };
 
-  onHosted = (channel, username) => {
+  onHosted = (text: string) => async (channel, username) => {
     this.rootClient
-      .say(channel, `imGlitch ${username} is hosting the stream ! imGlitch`)
+      .say(channel, insertVariables(text, { username }))
       .catch(logInfo);
   };
 

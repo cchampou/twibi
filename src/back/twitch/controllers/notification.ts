@@ -3,6 +3,16 @@ import TwitchMessaging from '../services/messaging';
 import { logError } from '../../utils/logger';
 import EventSub from '../services/eventsub/core';
 
+const createOrUpdate = async (user, type, text) => {
+  const existing = await Notification.findOne({ user, eventType: type });
+  if (existing) {
+    existing.text = text;
+    await existing.save();
+  } else {
+    await Notification.create({ user, eventType: type, text });
+  }
+};
+
 export const get = async (req, res) => {
   try {
     const data = await Notification.findOne({
@@ -18,7 +28,7 @@ export const get = async (req, res) => {
 
 export const subscribe = async (req, res) => {
   try {
-    await Notification.create({ user: req.user, eventType: req.params.type });
+    await createOrUpdate(req.user, req.params.type, req.body.text);
     EventSub.createSubscription(
       `channel.${req.params.type}`,
       req.user.twitchUserId
@@ -47,7 +57,7 @@ export const unsubscribe = async (req, res) => {
 
 export const subscribeHost = async (req, res) => {
   try {
-    await Notification.create({ user: req.user, eventType: 'host' });
+    await createOrUpdate(req.user, 'host', req.body.text);
     await TwitchMessaging.checkForNotificationNeed();
     return res.send('OK');
   } catch (e) {
