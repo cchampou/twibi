@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="css-1a1vh9v"
+        class="css-1d8iol8"
       >
         <img
           alt="Twibi logo"
@@ -15,12 +15,12 @@ Object {
           src="a random file"
         />
         <h1
-          class="css-gcnqix"
+          class="css-mq6yo6"
         >
           Twibi
         </h1>
         <h1
-          class="css-1fy1jtn"
+          class="css-1ax7ubd"
         >
           Twitch & social networks tools
         </h1>
@@ -29,7 +29,7 @@ Object {
           target="_self"
         >
           <button
-            class="css-1q1ryt5"
+            class="css-1ihf8ky"
             type="button"
           >
             Enter
@@ -37,19 +37,19 @@ Object {
         </a>
         <img
           alt="down"
-          class="css-9mop3v"
+          class="css-10tuai9"
           size="2"
           src="a random file"
         />
       </div>
       <div
-        class="css-k164mj"
+        class="css-ie1tif"
       >
         <div
-          class="css-1488l36"
+          class="css-150so39"
         >
           <h1
-            class="css-1fy1jtn"
+            class="css-1ax7ubd"
           >
             Twitch chat notifications
           </h1>
@@ -60,7 +60,7 @@ Object {
           </p>
         </div>
         <div
-          class="css-1488l36"
+          class="css-150so39"
         >
           <img
             alt="twitch"
@@ -71,10 +71,10 @@ Object {
         </div>
       </div>
       <div
-        class="css-wt80aq"
+        class="css-1qrzjub"
       >
         <div
-          class="css-1488l36"
+          class="css-150so39"
         >
           <img
             alt="discord"
@@ -84,10 +84,10 @@ Object {
           />
         </div>
         <div
-          class="css-1488l36"
+          class="css-150so39"
         >
           <h1
-            class="css-1fy1jtn"
+            class="css-1ax7ubd"
           >
             Now live notifications
           </h1>
@@ -143,7 +143,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="css-1a1vh9v"
+      class="css-1d8iol8"
     >
       <img
         alt="Twibi logo"
@@ -152,12 +152,12 @@ Object {
         src="a random file"
       />
       <h1
-        class="css-gcnqix"
+        class="css-mq6yo6"
       >
         Twibi
       </h1>
       <h1
-        class="css-1fy1jtn"
+        class="css-1ax7ubd"
       >
         Twitch & social networks tools
       </h1>
@@ -166,7 +166,7 @@ Object {
         target="_self"
       >
         <button
-          class="css-1q1ryt5"
+          class="css-1ihf8ky"
           type="button"
         >
           Enter
@@ -174,19 +174,19 @@ Object {
       </a>
       <img
         alt="down"
-        class="css-9mop3v"
+        class="css-10tuai9"
         size="2"
         src="a random file"
       />
     </div>
     <div
-      class="css-k164mj"
+      class="css-ie1tif"
     >
       <div
-        class="css-1488l36"
+        class="css-150so39"
       >
         <h1
-          class="css-1fy1jtn"
+          class="css-1ax7ubd"
         >
           Twitch chat notifications
         </h1>
@@ -197,7 +197,7 @@ Object {
         </p>
       </div>
       <div
-        class="css-1488l36"
+        class="css-150so39"
       >
         <img
           alt="twitch"
@@ -208,10 +208,10 @@ Object {
       </div>
     </div>
     <div
-      class="css-wt80aq"
+      class="css-1qrzjub"
     >
       <div
-        class="css-1488l36"
+        class="css-150so39"
       >
         <img
           alt="discord"
@@ -221,10 +221,10 @@ Object {
         />
       </div>
       <div
-        class="css-1488l36"
+        class="css-150so39"
       >
         <h1
-          class="css-1fy1jtn"
+          class="css-1ax7ubd"
         >
           Now live notifications
         </h1>
