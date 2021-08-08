@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateTwitchOAuthLink should match snapshot 1`] = `"https://id.twitch.tv/oauth2/authorize?client_id=client-id&redirect_uri=undefined&response_type=token&scope=user:read:email chat:read chat:edit channel:read:subscriptions"`;
