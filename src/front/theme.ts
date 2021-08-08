@@ -6,6 +6,9 @@ const theme = {
     gray: '#1F1F1F',
     black: '#0E0E10',
   },
+  breakpoints: {
+    mobile: '600px',
+  },
 };
 
 export default theme;

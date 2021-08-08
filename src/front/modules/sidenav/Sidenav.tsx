@@ -17,9 +17,18 @@ const SidenavWrapper = styled('div')`
   z-index: 1;
   box-shadow: 0 0 10px ${theme.colors.black};
   background-color: ${theme.colors.black};
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    height: auto;
+    width: 100vw;
+  }
 `;
 
-const SidenavItem = styled(Link)`
+interface SidenavIteType {
+  disabled?: boolean;
+}
+
+const SidenavItem = styled(Link)<SidenavIteType>`
   font-family: Helvetica, sans-serif;
   color: ${({ disabled }) =>
     disabled ? theme.colors.gray : theme.colors.white};
@@ -43,11 +52,11 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
         Chatbots&nbsp;
         <FontAwesomeIcon icon={faCommentDots} />
       </SidenavItem>
-      <SidenavItem disabled>
+      <SidenavItem to="#" disabled>
         Discord&nbsp;
         <FontAwesomeIcon icon={faDiscord} />
       </SidenavItem>
-      <SidenavItem disabled>
+      <SidenavItem to="#" disabled>
         Twitter&nbsp;
         <FontAwesomeIcon icon={faTwitter} />
       </SidenavItem>

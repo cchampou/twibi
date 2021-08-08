@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 const getFontSizeByLevel = ({ level }) => {
   switch (level) {
     case 2:
-      return '3rem';
-    case 3:
       return '2rem';
+    case 3:
+      return '1.5rem';
     default:
-      return '5rem';
+      return '4rem';
   }
 };
 

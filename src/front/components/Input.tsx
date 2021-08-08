@@ -8,8 +8,12 @@ const Input = styled('input')`
   font-weight: bold;
   margin: 1rem;
   border-radius: 2px;
-  border: none;
+  border: solid 1px ${theme.colors.gray};
   flex: 1;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    margin: 5px 0;
+  }
 `;
 
 export default Input;

@@ -6,13 +6,22 @@ import Router from './router';
 import theme from './theme';
 
 const globalStyles = css`
+  html {
+    font-size: 20px;
+
+    @media (max-width: ${theme.breakpoints.mobile}) {
+      font-size: 16px;
+    }
+  }
+
   body {
     background-color: ${theme.colors.black};
     margin: 0;
     color: ${theme.colors.white};
-    font-size: 20px;
     font-family: Helvetica, Open-Sans;
     font-weight: lighter;
+    width: 100vw;
+    overflow-x: hidden;
   }
 `;
 
