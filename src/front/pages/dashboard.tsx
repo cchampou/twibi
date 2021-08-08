@@ -12,6 +12,10 @@ import Heading from '../components/Heading';
 
 const Wrapper = styled('section')`
   display: flex;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    flex-direction: column;
+  }
 `;
 const MainSection = styled('section')`
   padding: 2rem;

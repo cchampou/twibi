@@ -21,6 +21,11 @@ const HomeWrapper = styled('div')`
   align-items: center;
   height: 100vh;
   width: 100vw;
+  margin: auto;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    width: 90vw;
+  }
 `;
 
 const SecondWrapper = styled('div')`
@@ -31,6 +36,11 @@ const SecondWrapper = styled('div')`
   height: 50vh;
   width: 80vw;
   margin: auto;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 const ThirdWrapper = styled(SecondWrapper)`
@@ -39,6 +49,12 @@ const ThirdWrapper = styled(SecondWrapper)`
 
 const UnderWrapper = styled('div')`
   padding: 5rem;
+  text-align: center;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    width: 100%;
+    padding: 1rem;
+  }
 `;
 
 const Paragraph = styled('p')`
@@ -54,7 +70,7 @@ const Footer = styled('footer')`
 
 const Chevron = styled(Picture)`
   position: absolute;
-  top: 90vh;
+  top: 80vh;
 `;
 
 const GithubLink = styled('a')`

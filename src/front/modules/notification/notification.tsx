@@ -10,9 +10,12 @@ const Wrapper = styled('div')`
   background-color: ${theme.colors.black};
   padding: 20px;
   margin: 50px;
-  max-width: 50%;
   border-radius: 10px;
   box-shadow: 0 0 50px ${theme.colors.black};
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    margin: 10px 0;
+  }
 `;
 
 const Label = styled('label')`
@@ -23,6 +26,10 @@ const Form = styled('form')`
   display: flex;
   width: 100%;
   margin: 0;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    flex-direction: column;
+  }
 `;
 
 type NotificationType = {

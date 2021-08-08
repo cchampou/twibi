@@ -24,7 +24,7 @@ const authMiddleware = async (
     });
     return next();
   } catch (e) {
-    logError(e);
+    logError(`AuthMiddleware: ${e}`);
     return res.status(401).send(e);
   }
 };

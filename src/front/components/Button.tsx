@@ -10,6 +10,10 @@ const Button = styled('button')`
   background-color: ${theme.colors.primary};
   color: ${theme.colors.white};
   font-weight: bold;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    margin: 5px 0;
+  }
 `;
 
 export default Button;
