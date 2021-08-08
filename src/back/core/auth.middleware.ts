@@ -5,7 +5,9 @@ import User from '../twitch/models/User';
 const authMiddleware = async (req, res, next) => {
   try {
     const token = removeBearerFromAuthorization(req.get('Authorization'));
-    const { email, twitchUsername } = await verify(token, process.env.SECRET);
+    const { email, twitchUsername } = <
+      { email: string; twitchUsername: string }
+    >await verify(token, process.env.SECRET);
     req.user = await User.findOne({
       email,
       twitchUsername,

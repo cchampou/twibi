@@ -19,7 +19,11 @@ class TwitchMessaging {
     this.checkForNotificationNeed().then(() => null);
   }
 
-  connect(username: string, password: string) {
+  connect(
+    username: string,
+    password: string,
+    opts: { hostText: string } = { hostText: 'New host' }
+  ) {
     const newClient = new Client({
       identity: {
         username,
@@ -31,7 +35,7 @@ class TwitchMessaging {
       .connect()
       .then(() => logSuccess(`New chat connected for user ${username}`))
       .catch(logError);
-    newClient.on('hosted', this.onHosted);
+    newClient.on('hosted', this.onHosted(opts.hostText));
     newClient.on('message', this.onMessage);
     return newClient;
   }
@@ -46,7 +50,7 @@ class TwitchMessaging {
         eventType: 'host',
       }).populate('user');
       notifications.forEach(
-        ({ user: { twitchUsername, twitchAccessToken } }: any) => {
+        ({ user: { twitchUsername, twitchAccessToken }, text }: any) => {
           this.clients.push(this.connect(twitchUsername, twitchAccessToken));
         }
       );
@@ -55,10 +59,8 @@ class TwitchMessaging {
     }
   };
 
-  onHosted = (channel, username) => {
-    this.rootClient
-      .say(channel, `imGlitch ${username} is hosting the stream ! imGlitch`)
-      .catch(logInfo);
+  onHosted = (text: string) => async (channel, username) => {
+    this.rootClient.say(channel, text).catch(logInfo);
   };
 
   onMessage = (channel, tags, message, self) => {
