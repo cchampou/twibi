@@ -1,6 +1,6 @@
 import { Client } from 'tmi.js';
 import { logError, logInfo, logSuccess, logWarn } from '../../utils/logger';
-import { splitWords, trimStart } from '../../utils/string';
+import { insertVariables, splitWords, trimStart } from '../../utils/string';
 import Command from '../models/Command';
 import { CommandType } from '../../../common/types';
 import Notification from '../models/Notification';
@@ -51,7 +51,9 @@ class TwitchMessaging {
       }).populate('user');
       notifications.forEach(
         ({ user: { twitchUsername, twitchAccessToken }, text }: any) => {
-          this.clients.push(this.connect(twitchUsername, twitchAccessToken));
+          this.clients.push(
+            this.connect(twitchUsername, twitchAccessToken, { hostText: text })
+          );
         }
       );
     } catch (e) {
@@ -60,7 +62,9 @@ class TwitchMessaging {
   };
 
   onHosted = (text: string) => async (channel, username) => {
-    this.rootClient.say(channel, text).catch(logInfo);
+    this.rootClient
+      .say(channel, insertVariables(text, { username }))
+      .catch(logInfo);
   };
 
   onMessage = (channel, tags, message, self) => {
