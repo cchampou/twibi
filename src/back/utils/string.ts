@@ -21,4 +21,4 @@ export const insertVariables = (
   }
 };
 
-export const removeBearerFromAuthorization = (str) => str.slice(7);
+export const removeBearerFromAuthorization = ({ slice }: string) => slice(7);

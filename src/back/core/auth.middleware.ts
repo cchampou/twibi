@@ -1,8 +1,18 @@
 import { verify } from 'jsonwebtoken';
+import { NextFunction, Request, Response } from 'express';
 import { removeBearerFromAuthorization } from '../utils/string';
-import User from '../twitch/models/User';
+import User, { UserType } from '../twitch/models/User';
+import { logError } from '../utils/logger';
 
-const authMiddleware = async (req, res, next) => {
+type RequestWithUser = Request & {
+  user?: UserType;
+};
+
+const authMiddleware = async (
+  req: RequestWithUser,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const token = removeBearerFromAuthorization(req.get('Authorization'));
     const { email, twitchUsername } = <
@@ -14,6 +24,7 @@ const authMiddleware = async (req, res, next) => {
     });
     return next();
   } catch (e) {
+    logError(e);
     return res.status(401).send(e);
   }
 };
