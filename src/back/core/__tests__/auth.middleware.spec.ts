@@ -53,7 +53,7 @@ describe('authMiddleware', () => {
   });
 
   it('should call status and send on error', () => {
-    verify.mockImplementation(() => {
+    (verify as jest.Mock).mockImplementation(() => {
       throw new Error('JWT');
     });
     authMiddleware(mockedReq, mockedRes, mockedNext);
