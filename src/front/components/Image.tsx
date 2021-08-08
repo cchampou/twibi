@@ -12,13 +12,13 @@ const getBorderRadius = ({ round }) => (round ? '50%' : 0);
 const getSize = ({ size }) => {
   switch (size) {
     case SizeEnum.LARGE:
-      return '20rem';
+      return '150px';
     case SizeEnum.MEDIUM:
-      return '10rem';
+      return '100px';
     case SizeEnum.SMALL:
-      return '5rem';
+      return '50px';
     default:
-      return '10rem';
+      return '50px';
   }
 };
 
@@ -57,6 +57,7 @@ const Picture: FunctionComponent<PictureProps> = ({
     size={size}
     src={src}
     className={className}
+    width={getSize({ size })}
   />
 );
 
