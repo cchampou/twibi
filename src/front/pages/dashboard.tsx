@@ -5,7 +5,7 @@ import Notifications from './notifications';
 import Chatbot from './chatbot';
 import Sidenav from '../modules/sidenav/Sidenav';
 import theme from '../theme';
-import Settings from './settings';
+import Discord from './discord';
 import withAuthHoc from '../modules/login/withAuth.hoc';
 import Profile from '../modules/profile/profile';
 import Heading from '../components/Heading';
@@ -37,8 +37,8 @@ const Dashboard = () => {
           <Route path={`${path}/bots`}>
             <Chatbot />
           </Route>
-          <Route path={`${path}/settings`}>
-            <Settings />
+          <Route path={`${path}/discord`}>
+            <Discord />
           </Route>
           <Route>
             <Profile />

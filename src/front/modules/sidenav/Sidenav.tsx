@@ -52,7 +52,7 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
         Chatbots&nbsp;
         <FontAwesomeIcon icon={faCommentDots} />
       </SidenavItem>
-      <SidenavItem to="#" disabled>
+      <SidenavItem to={`${baseUrl}/discord`} disabled>
         Discord&nbsp;
         <FontAwesomeIcon icon={faDiscord} />
       </SidenavItem>
@@ -60,7 +60,7 @@ const Sidenav = ({ baseUrl }: { baseUrl: string }) => {
         Twitter&nbsp;
         <FontAwesomeIcon icon={faTwitter} />
       </SidenavItem>
-      {/* <SidenavItem to={`${baseUrl}/settings`}>Settings ⚙️</SidenavItem> */}
+      {/* <SidenavItem to={`${baseUrl}/settings`}>Discord ⚙️</SidenavItem> */}
       <SidenavItem to="/" onClick={logout}>
         Logout&nbsp;
         <FontAwesomeIcon icon={faSignOutAlt} />
