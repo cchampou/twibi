@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/cchampou/twibi.git"
   },
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "start": "node dist/server.js",
     "start:dev": "nodemon dist/server.js",
@@ -32,7 +35,7 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
-    "discord.js": "^12.5.3",
+    "discord.js": "13.1.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
