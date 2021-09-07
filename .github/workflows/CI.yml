@@ -20,7 +20,7 @@ jobs:
           key: ${{ runner.os }}-modules
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
       - run: yarn install
       - run: yarn lint
   Test:
@@ -35,7 +35,7 @@ jobs:
           key: ${{ runner.os }}-modules
       - uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
       - run: yarn install
       - run: yarn test --coverage
 #      - uses: romeovs/lcov-reporter-action@v0.2.16
