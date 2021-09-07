@@ -1,6 +1,7 @@
 import {
   Channel,
   Client,
+  Intents,
   MessageEmbed,
   MessageEmbedOptions,
   TextChannel,
@@ -13,7 +14,9 @@ class DiscordClass {
   channel;
 
   constructor() {
-    this.client = new Client();
+    this.client = new Client({
+      intents: [Intents.FLAGS.GUILD_MESSAGES],
+    });
     this.channel = '849328296113471540';
     this.connectClient();
   }
