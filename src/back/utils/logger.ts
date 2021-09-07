@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { bold, white } from 'chalk';
 
 const error = bold.redBright;
