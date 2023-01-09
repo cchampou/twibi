@@ -42,7 +42,7 @@
     "express-history-api-fallback": "^2.2.1",
     "ffmpeg-static": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
-    "luxon": "^2.0.1",
+    "luxon": "^2.5.2",
     "mongoose": "^5.13.2",
     "node-fetch": "^2.6.1",
     "pupa": "^3.0.0",
