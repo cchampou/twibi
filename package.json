@@ -43,7 +43,7 @@
     "ffmpeg-static": "^4.3.0",
     "jsonwebtoken": "^8.5.1",
     "luxon": "^2.0.1",
-    "mongoose": "^5.13.2",
+    "mongoose": "^5.13.15",
     "node-fetch": "^2.6.1",
     "pupa": "^3.0.0",
     "react": "^17.0.2",
